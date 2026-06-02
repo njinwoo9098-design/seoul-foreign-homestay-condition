@@ -5,7 +5,7 @@ export async function handler(event) {
 
     const apiBase =
       process.env.BUILDING_API_URL ||
-      "https://apis.data.go.kr/1613000/BldRgstService_v2/getBrTitleInfo";
+      "http://apis.data.go.kr/1613000/BldRgstService_v2/getBrTitleInfo";
 
     if (!serviceKey) {
       console.error("[building-ledger] BUILDING_API_KEY 없음");

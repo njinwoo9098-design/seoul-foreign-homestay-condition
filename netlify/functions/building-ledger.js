@@ -1,14 +1,15 @@
 export async function handler(event) {
   try {
+    if (event.httpMethod === "OPTIONS") {
+      return json(200, { ok: true });
+    }
+
     const q = event.queryStringParameters || {};
-    const serviceKey = (process.env.BUILDING_API_KEY || "").replace(/\s/g, "");
 
-    const apiBase =
-      process.env.BUILDING_API_URL ||
-      "http://apis.data.go.kr/1613000/BldRgstService_v2/getBrTitleInfo";
+    const rawServiceKey = process.env.BUILDING_API_KEY || "";
+    const cleanServiceKey = rawServiceKey.replace(/\s/g, "");
 
-    if (!serviceKey) {
-      console.error("[building-ledger] BUILDING_API_KEY 없음");
+    if (!cleanServiceKey) {
       return json(500, {
         error: "BUILDING_API_KEY 환경변수가 설정되지 않았습니다."
       });
@@ -25,7 +26,10 @@ export async function handler(event) {
       bjdongCd,
       platGbCd,
       bun,
-      ji
+      ji,
+      keyLength: cleanServiceKey.length,
+      keyHasPercentEncoding: /%[0-9A-Fa-f]{2}/.test(cleanServiceKey),
+      keyHadWhitespace: rawServiceKey !== cleanServiceKey
     });
 
     if (!sigunguCd || !bjdongCd || !bun) {
@@ -35,113 +39,182 @@ export async function handler(event) {
       });
     }
 
-    const params = new URLSearchParams();
-    params.set("sigunguCd", sigunguCd);
-    params.set("bjdongCd", bjdongCd);
-    params.set("platGbCd", platGbCd);
-    params.set("bun", bun);
-    params.set("ji", ji);
-    params.set("numOfRows", "20");
-    params.set("pageNo", "1");
-    params.set("_type", "json");
+    const bases = unique([
+      process.env.BUILDING_API_URL,
+      "https://apis.data.go.kr/1613000/BldRgstService_v2/getBrTitleInfo",
+      "http://apis.data.go.kr/1613000/BldRgstService_v2/getBrTitleInfo"
+    ].filter(Boolean));
 
-    const url = `${apiBase}?serviceKey=${safeServiceKey(serviceKey)}&${params.toString()}`;
+    const serviceKeys = makeServiceKeyCandidates(cleanServiceKey);
 
-    console.log("[building-ledger] 키 없는 URL 요청", {
-      apiBase,
-      sigunguCd,
-      bjdongCd,
-      platGbCd,
-      bun,
-      ji
-    });
+    const attempts = [];
 
-    const res = await fetch(url);
-    const text = await res.text();
+    for (const apiBase of bases) {
+      for (const serviceKey of serviceKeys) {
+        const result = await callBuildingApi({
+          apiBase,
+          serviceKey,
+          sigunguCd,
+          bjdongCd,
+          platGbCd,
+          bun,
+          ji
+        });
 
-    console.log("[building-ledger] 응답", {
-      status: res.status,
-      preview: text.slice(0, 300)
-    });
+        attempts.push({
+          apiBase,
+          keyMode: result.keyMode,
+          status: result.status,
+          ok: result.ok,
+          preview: result.preview
+        });
 
-    let data;
-    try {
-      data = JSON.parse(text);
-    } catch {
-      const xmlMsg =
-        extractXmlTag(text, "returnAuthMsg") ||
-        extractXmlTag(text, "errMsg") ||
-        extractXmlTag(text, "resultMsg") ||
-        extractXmlTag(text, "cmmMsgHeader");
-
-      console.error("[building-ledger] JSON 파싱 실패", {
-        status: res.status,
-        xmlMsg,
-        raw: text.slice(0, 1000)
-      });
-
-      return json(502, {
-        error: "건축물대장 API 응답을 JSON으로 해석하지 못했습니다.",
-        status: res.status,
-        message: xmlMsg || "공공데이터 API가 JSON이 아닌 응답을 반환했습니다.",
-        raw: text.slice(0, 1000)
-      });
+        if (result.ok) {
+          return json(200, result.body);
+        }
+      }
     }
 
-    const header = data?.response?.header || {};
-    const resultCode = String(header.resultCode || "");
-    const resultMsg = String(header.resultMsg || "");
-
-    if (resultCode && resultCode !== "00") {
-      console.error("[building-ledger] API resultCode 오류", {
-        resultCode,
-        resultMsg,
-        header
-      });
-
-      return json(502, {
-        error: resultMsg || "건축물대장 API 오류",
-        code: resultCode,
-        header
-      });
-    }
-
-    const rawItems = data?.response?.body?.items?.item;
-    const list = Array.isArray(rawItems) ? rawItems : rawItems ? [rawItems] : [];
-
-    const items = list.map((item) => ({
-      buildingName: item.bldNm || "",
-      platPlc: item.platPlc || "",
-      newPlatPlc: item.newPlatPlc || "",
-      dongName: item.dongNm || "",
-      structure: item.strctCdNm || item.etcStrct || "",
-      approvalDate: normalizeDate(item.useAprDay || ""),
-      mainUse: item.mainPurpsCdNm || "",
-      grndFlrCnt: item.grndFlrCnt || "",
-      ugrndFlrCnt: item.ugrndFlrCnt || ""
-    }));
-
-    return json(200, {
-      items,
-      count: items.length
+    return json(502, {
+      error: "건축물대장 API 조회에 실패했습니다.",
+      message: "공공데이터포털 직접 테스트는 성공했으므로 Netlify 환경변수 BUILDING_API_KEY 값의 줄바꿈/공백/인코딩 문제 가능성이 큽니다.",
+      attempts
     });
   } catch (err) {
     console.error("[building-ledger] server error", err);
-
     return json(500, {
       error: err?.message || "건축물대장 함수 내부 오류가 발생했습니다."
     });
   }
 }
 
-function safeServiceKey(key) {
-  const trimmed = String(key || "").trim();
+async function callBuildingApi({
+  apiBase,
+  serviceKey,
+  sigunguCd,
+  bjdongCd,
+  platGbCd,
+  bun,
+  ji
+}) {
+  const params = new URLSearchParams();
+  params.set("sigunguCd", sigunguCd);
+  params.set("bjdongCd", bjdongCd);
+  params.set("platGbCd", platGbCd);
+  params.set("bun", bun);
+  params.set("ji", ji);
+  params.set("numOfRows", "20");
+  params.set("pageNo", "1");
+  params.set("_type", "json");
 
-  if (/%[0-9A-Fa-f]{2}/.test(trimmed)) {
-    return trimmed;
+  const url = `${apiBase}?serviceKey=${serviceKey.value}&${params.toString()}`;
+
+  console.log("[building-ledger] request", {
+    apiBase,
+    keyMode: serviceKey.mode,
+    sigunguCd,
+    bjdongCd,
+    platGbCd,
+    bun,
+    ji
+  });
+
+  const res = await fetch(url);
+  const text = await res.text();
+
+  console.log("[building-ledger] response", {
+    apiBase,
+    keyMode: serviceKey.mode,
+    status: res.status,
+    preview: text.slice(0, 300)
+  });
+
+  let data;
+  try {
+    data = JSON.parse(text);
+  } catch {
+    return {
+      ok: false,
+      status: res.status,
+      keyMode: serviceKey.mode,
+      preview: text.slice(0, 300)
+    };
   }
 
-  return encodeURIComponent(trimmed);
+  const header = data?.response?.header || {};
+  const resultCode = String(header.resultCode || "");
+  const resultMsg = String(header.resultMsg || "");
+
+  if (resultCode && resultCode !== "00") {
+    return {
+      ok: false,
+      status: res.status,
+      keyMode: serviceKey.mode,
+      preview: `${resultCode} / ${resultMsg}`
+    };
+  }
+
+  const rawItems = data?.response?.body?.items?.item;
+  const list = Array.isArray(rawItems) ? rawItems : rawItems ? [rawItems] : [];
+
+  const items = list.map((item) => ({
+    buildingName: item.bldNm || "",
+    platPlc: item.platPlc || "",
+    newPlatPlc: item.newPlatPlc || "",
+    dongName: item.dongNm || "",
+    structure: item.strctCdNm || item.etcStrct || "",
+    approvalDate: normalizeDate(item.useAprDay || ""),
+    mainUse: item.mainPurpsCdNm || "",
+    grndFlrCnt: item.grndFlrCnt || "",
+    ugrndFlrCnt: item.ugrndFlrCnt || ""
+  }));
+
+  return {
+    ok: true,
+    status: res.status,
+    keyMode: serviceKey.mode,
+    preview: "NORMAL SERVICE",
+    body: {
+      items,
+      count: items.length
+    }
+  };
+}
+
+function makeServiceKeyCandidates(key) {
+  const candidates = [];
+
+  candidates.push({
+    mode: "raw",
+    value: key
+  });
+
+  candidates.push({
+    mode: "encodeURIComponent",
+    value: encodeURIComponent(key)
+  });
+
+  try {
+    const decoded = decodeURIComponent(key);
+    candidates.push({
+      mode: "decodeURIComponent_then_encodeURIComponent",
+      value: encodeURIComponent(decoded)
+    });
+
+    candidates.push({
+      mode: "decoded_raw",
+      value: decoded
+    });
+  } catch {
+    // 이미 디코딩 키면 여기서 무시
+  }
+
+  const seen = new Set();
+  return candidates.filter((item) => {
+    if (!item.value || seen.has(item.value)) return false;
+    seen.add(item.value);
+    return true;
+  });
 }
 
 function pad4(v) {
@@ -157,11 +230,8 @@ function normalizeDate(v) {
   return `${s.slice(0, 4)}-${s.slice(4, 6)}-${s.slice(6, 8)}`;
 }
 
-function extractXmlTag(text, tagName) {
-  const match = String(text || "").match(
-    new RegExp(`<${tagName}>(.*?)</${tagName}>`, "is")
-  );
-  return match ? match[1].trim() : "";
+function unique(arr) {
+  return [...new Set(arr)];
 }
 
 function json(statusCode, body) {
@@ -169,7 +239,9 @@ function json(statusCode, body) {
     statusCode,
     headers: {
       "Content-Type": "application/json; charset=utf-8",
-      "Access-Control-Allow-Origin": "*"
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Headers": "Content-Type",
+      "Access-Control-Allow-Methods": "GET, OPTIONS"
     },
     body: JSON.stringify(body)
   };

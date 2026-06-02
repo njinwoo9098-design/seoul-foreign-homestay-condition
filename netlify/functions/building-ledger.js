@@ -119,8 +119,16 @@ async function callBuildingApi({
     ji
   });
 
-  const res = await fetch(url);
-  const text = await res.text();
+ const res = await fetch(url, {
+  method: "GET",
+  headers: {
+    "Accept": "application/json, text/plain, */*",
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120 Safari/537.36",
+    "Referer": "https://www.data.go.kr/"
+  }
+});
+
+const text = await res.text();
 
   console.log("[building-ledger] response", {
     apiBase,

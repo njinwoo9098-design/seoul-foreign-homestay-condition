@@ -47,7 +47,7 @@ export async function handler(event) {
 
     const url = `${apiBase}?serviceKey=${safeServiceKey(serviceKey)}&${params.toString()}`;
 
-    console.log("[building-ledger] request url without key", {
+    console.log("[building-ledger] 키 없는 URL 요청", {
       apiBase,
       sigunguCd,
       bjdongCd,
@@ -59,7 +59,7 @@ export async function handler(event) {
     const res = await fetch(url);
     const text = await res.text();
 
-    console.log("[building-ledger] response", {
+    console.log("[building-ledger] 응답", {
       status: res.status,
       preview: text.slice(0, 300)
     });
@@ -67,7 +67,7 @@ export async function handler(event) {
     let data;
     try {
       data = JSON.parse(text);
-    } catch (err) {
+    } catch {
       const xmlMsg =
         extractXmlTag(text, "returnAuthMsg") ||
         extractXmlTag(text, "errMsg") ||
@@ -137,12 +137,10 @@ export async function handler(event) {
 function safeServiceKey(key) {
   const trimmed = String(key || "").trim();
 
-  // 이미 인코딩된 공공데이터 Encoding Key면 그대로 사용
   if (/%[0-9A-Fa-f]{2}/.test(trimmed)) {
     return trimmed;
   }
 
-  // Decoding Key면 여기서 한 번만 인코딩
   return encodeURIComponent(trimmed);
 }
 

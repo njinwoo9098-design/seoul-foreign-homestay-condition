@@ -103,7 +103,7 @@ async function callBuildingApi({
   params.set("platGbCd", platGbCd);
   params.set("bun", bun);
   params.set("ji", ji);
-  params.set("numOfRows", "20");
+  params.set("numOfRows", "1");
   params.set("pageNo", "1");
   params.set("_type", "json");
 

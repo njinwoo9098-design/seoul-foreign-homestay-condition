@@ -1,7 +1,7 @@
 export async function handler(event) {
   try {
     const q = event.queryStringParameters || {};
-    const serviceKey = (process.env.BUILDING_API_KEY || "").trim();
+    const serviceKey = (process.env.BUILDING_API_KEY || "").replace(/\s/g, "");
 
     const apiBase =
       process.env.BUILDING_API_URL ||

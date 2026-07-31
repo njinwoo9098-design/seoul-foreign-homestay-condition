@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>외도민 안전점검표 현장발송앱 PWA v113</title>
+<title>외도민 안전점검표 현장발송앱 PWA v144</title>
 <style>
   :root{
     --line:#111;
@@ -3570,6 +3570,12 @@
     background:#7c3aed;
     color:#fff;
   }
+
+  .send-actions button.ipad{
+    background:#0f766e;
+    color:#fff;
+  }
+
   .send-note{
     margin-top:10px;
     font-size:12px;
@@ -3907,6 +3913,1454 @@
     }
   }
 
+
+  /* v144: 아이패드 Safari PDF 인쇄 안정화 모드 */
+  @media print{
+    body.ipad-pdf-mode,
+    body.ipad-pdf-mode html{
+      width:auto!important;
+      height:auto!important;
+      margin:0!important;
+      padding:0!important;
+      background:#fff!important;
+      overflow:visible!important;
+      -webkit-print-color-adjust:exact!important;
+      print-color-adjust:exact!important;
+    }
+
+    body.ipad-pdf-mode .toolbar,
+    body.ipad-pdf-mode .guide,
+    body.ipad-pdf-mode .field-send-panel,
+    body.ipad-pdf-mode .photo-picker-note,
+    body.ipad-pdf-mode .image-export-status,
+    body.ipad-pdf-mode .signature-modal,
+    body.ipad-pdf-mode .photo-choice-modal,
+    body.ipad-pdf-mode .photo-delete-btn,
+    body.ipad-pdf-mode .photo-help,
+    body.ipad-pdf-mode .photo-placed-mark{
+      display:none!important;
+    }
+
+    body.ipad-pdf-mode .page{
+      display:block!important;
+      position:relative!important;
+      width:190mm!important;
+      min-width:190mm!important;
+      max-width:190mm!important;
+      height:auto!important;
+      min-height:0!important;
+      max-height:none!important;
+      margin:0 auto!important;
+      padding:8mm 8mm 8mm!important;
+      background:#fff!important;
+      box-shadow:none!important;
+      overflow:visible!important;
+      transform:none!important;
+      page-break-before:auto!important;
+      break-before:auto!important;
+      page-break-after:always!important;
+      break-after:page!important;
+      page-break-inside:avoid!important;
+      break-inside:avoid!important;
+    }
+
+    body.ipad-pdf-mode .page:last-of-type{
+      page-break-after:auto!important;
+      break-after:auto!important;
+    }
+
+    body.ipad-pdf-mode #page4.skip-print{
+      display:none!important;
+      page-break-after:auto!important;
+      break-after:auto!important;
+    }
+
+    body.ipad-pdf-mode table,
+    body.ipad-pdf-mode tr,
+    body.ipad-pdf-mode td,
+    body.ipad-pdf-mode th{
+      page-break-inside:avoid!important;
+      break-inside:avoid!important;
+      border-color:#111!important;
+      visibility:visible!important;
+      opacity:1!important;
+    }
+
+    body.ipad-pdf-mode table.form th,
+    body.ipad-pdf-mode table.form td{
+      border:1.25px solid #111!important;
+    }
+
+    body.ipad-pdf-mode .photo-table,
+    body.ipad-pdf-mode .photo-table tr,
+    body.ipad-pdf-mode .photo-table td,
+    body.ipad-pdf-mode .photo-cell,
+    body.ipad-pdf-mode .photo-box{
+      display:table-cell!important;
+      visibility:visible!important;
+      opacity:1!important;
+      border-color:#111!important;
+      background:#fff!important;
+    }
+
+    body.ipad-pdf-mode .photo-table{
+      display:table!important;
+      width:100%!important;
+      table-layout:fixed!important;
+      border-collapse:collapse!important;
+    }
+
+    body.ipad-pdf-mode .photo-box img,
+    body.ipad-pdf-mode .signature-box img,
+    body.ipad-pdf-mode img{
+      visibility:visible!important;
+      opacity:1!important;
+      -webkit-print-color-adjust:exact!important;
+      print-color-adjust:exact!important;
+    }
+
+    body.ipad-pdf-mode input,
+    body.ipad-pdf-mode textarea,
+    body.ipad-pdf-mode select{
+      color:#111!important;
+      background:transparent!important;
+      -webkit-text-fill-color:#111!important;
+    }
+  }
+
+
+  /* v144: 아이패드 PDF 인쇄 사진표/사진 출력 보정 */
+  @media print{
+    body.ipad-pdf-mode #page3 .photo-page-table,
+    body.ipad-pdf-mode #page4 .photo-page-table{
+      display:table!important;
+      width:100%!important;
+      table-layout:fixed!important;
+      border-collapse:collapse!important;
+      visibility:visible!important;
+      opacity:1!important;
+      overflow:visible!important;
+    }
+
+    body.ipad-pdf-mode #page3 .photo-page-table td,
+    body.ipad-pdf-mode #page4 .photo-page-table td{
+      display:table-cell!important;
+      border:1.25px solid #111!important;
+      visibility:visible!important;
+      opacity:1!important;
+      background:#fff!important;
+      overflow:hidden!important;
+    }
+
+    body.ipad-pdf-mode #page3 .photo-cell,
+    body.ipad-pdf-mode #page4 .photo-cell{
+      position:relative!important;
+      height:58mm!important;
+      min-height:58mm!important;
+      max-height:58mm!important;
+      width:50%!important;
+      padding:0!important;
+      line-height:0!important;
+      overflow:hidden!important;
+      vertical-align:top!important;
+      background:#fff!important;
+    }
+
+    body.ipad-pdf-mode #page3 .caption-cell,
+    body.ipad-pdf-mode #page4 .caption-cell{
+      height:8.5mm!important;
+      min-height:8.5mm!important;
+      max-height:8.5mm!important;
+      overflow:hidden!important;
+      vertical-align:middle!important;
+      text-align:center!important;
+      background:#fff!important;
+    }
+
+    body.ipad-pdf-mode #page3 .photo-box,
+    body.ipad-pdf-mode #page4 .photo-box{
+      position:relative!important;
+      display:block!important;
+      width:100%!important;
+      height:58mm!important;
+      min-height:58mm!important;
+      max-height:58mm!important;
+      inset:auto!important;
+      padding:0!important;
+      margin:0!important;
+      overflow:hidden!important;
+      background:#fff!important;
+      color:#777!important;
+    }
+
+    body.ipad-pdf-mode #page3 .photo-inner,
+    body.ipad-pdf-mode #page4 .photo-inner{
+      position:absolute!important;
+      left:1.8mm!important;
+      right:1.8mm!important;
+      top:1.8mm!important;
+      bottom:1.8mm!important;
+      width:auto!important;
+      height:auto!important;
+      display:block!important;
+      overflow:hidden!important;
+      background:#fff!important;
+    }
+
+    body.ipad-pdf-mode #page3 .photo-box img.auto-fit-photo,
+    body.ipad-pdf-mode #page4 .photo-box img.auto-fit-photo{
+      position:absolute!important;
+      inset:0!important;
+      width:100%!important;
+      height:100%!important;
+      min-width:100%!important;
+      min-height:100%!important;
+      max-width:none!important;
+      max-height:none!important;
+      object-fit:cover!important;
+      object-position:center center!important;
+      display:block!important;
+      visibility:visible!important;
+      opacity:1!important;
+      transform:none!important;
+      -webkit-transform:none!important;
+      -webkit-print-color-adjust:exact!important;
+      print-color-adjust:exact!important;
+    }
+
+    body.ipad-pdf-mode #page3 .photo-cell.has-photo .photo-box,
+    body.ipad-pdf-mode #page4 .photo-cell.has-photo .photo-box{
+      font-size:0!important;
+      color:transparent!important;
+    }
+
+    body.ipad-pdf-mode #page4.ipad-force-show{
+      display:block!important;
+      visibility:visible!important;
+      opacity:1!important;
+    }
+
+    body.ipad-pdf-mode #page4.ipad-force-show.skip-print{
+      display:block!important;
+    }
+  }
+
+
+  /* v144: 아이패드 사진 여백 3mm + 빈 페이지 방지 보정 */
+  @media print{
+    body.ipad-pdf-mode #page3,
+    body.ipad-pdf-mode #page4{
+      width:190mm!important;
+      min-width:190mm!important;
+      max-width:190mm!important;
+      padding:7mm 8mm 6mm!important;
+      min-height:0!important;
+      height:auto!important;
+      overflow:visible!important;
+      page-break-inside:avoid!important;
+      break-inside:avoid!important;
+    }
+
+    body.ipad-pdf-mode #page3 .photo-page-title,
+    body.ipad-pdf-mode #page4 .photo-page-title{
+      margin:0 0 2.2mm 0!important;
+      line-height:1.2!important;
+    }
+
+    body.ipad-pdf-mode #page3 .photo-page-table,
+    body.ipad-pdf-mode #page4 .photo-page-table{
+      display:table!important;
+      width:100%!important;
+      height:264mm!important;
+      min-height:264mm!important;
+      max-height:264mm!important;
+      table-layout:fixed!important;
+      border-collapse:collapse!important;
+      page-break-inside:avoid!important;
+      break-inside:avoid!important;
+      overflow:hidden!important;
+    }
+
+    body.ipad-pdf-mode #page3 .photo-page-table tr:nth-child(odd),
+    body.ipad-pdf-mode #page4 .photo-page-table tr:nth-child(odd){
+      height:55mm!important;
+      min-height:55mm!important;
+      max-height:55mm!important;
+    }
+    body.ipad-pdf-mode #page3 .photo-page-table tr:nth-child(even),
+    body.ipad-pdf-mode #page4 .photo-page-table tr:nth-child(even){
+      height:8mm!important;
+      min-height:8mm!important;
+      max-height:8mm!important;
+    }
+
+    body.ipad-pdf-mode #page3 .photo-cell,
+    body.ipad-pdf-mode #page4 .photo-cell{
+      position:relative!important;
+      width:50%!important;
+      height:55mm!important;
+      min-height:55mm!important;
+      max-height:55mm!important;
+      padding:0!important;
+      margin:0!important;
+      overflow:hidden!important;
+      background:#fff!important;
+      vertical-align:middle!important;
+      box-sizing:border-box!important;
+    }
+
+    body.ipad-pdf-mode #page3 .caption-cell,
+    body.ipad-pdf-mode #page4 .caption-cell{
+      height:8mm!important;
+      min-height:8mm!important;
+      max-height:8mm!important;
+      padding:0!important;
+      margin:0!important;
+      overflow:hidden!important;
+      vertical-align:middle!important;
+    }
+
+    body.ipad-pdf-mode #page3 .photo-box,
+    body.ipad-pdf-mode #page4 .photo-box{
+      position:relative!important;
+      display:block!important;
+      width:100%!important;
+      height:55mm!important;
+      min-height:55mm!important;
+      max-height:55mm!important;
+      padding:3mm!important;
+      margin:0!important;
+      overflow:hidden!important;
+      box-sizing:border-box!important;
+      background:#fff!important;
+    }
+
+    body.ipad-pdf-mode #page3 .photo-inner,
+    body.ipad-pdf-mode #page4 .photo-inner{
+      position:relative!important;
+      display:block!important;
+      width:100%!important;
+      height:100%!important;
+      min-height:100%!important;
+      max-height:100%!important;
+      overflow:hidden!important;
+      background:#fff!important;
+      box-sizing:border-box!important;
+    }
+
+    body.ipad-pdf-mode #page3 .photo-box img.auto-fit-photo,
+    body.ipad-pdf-mode #page4 .photo-box img.auto-fit-photo,
+    body.ipad-pdf-mode #page3 .photo-box img.drag-photo,
+    body.ipad-pdf-mode #page4 .photo-box img.drag-photo{
+      position:absolute!important;
+      inset:0!important;
+      width:100%!important;
+      height:100%!important;
+      min-width:100%!important;
+      min-height:100%!important;
+      max-width:none!important;
+      max-height:none!important;
+      object-fit:cover!important;
+      object-position:center center!important;
+      display:block!important;
+      visibility:visible!important;
+      opacity:1!important;
+      transform:none!important;
+      -webkit-transform:none!important;
+      -webkit-print-color-adjust:exact!important;
+      print-color-adjust:exact!important;
+    }
+
+    body.ipad-pdf-mode #page3 .photo-file-input,
+    body.ipad-pdf-mode #page4 .photo-file-input,
+    body.ipad-pdf-mode #page3 .photo-help,
+    body.ipad-pdf-mode #page4 .photo-help,
+    body.ipad-pdf-mode #page3 .photo-delete-btn,
+    body.ipad-pdf-mode #page4 .photo-delete-btn,
+    body.ipad-pdf-mode #page3 .photo-placed-mark,
+    body.ipad-pdf-mode #page4 .photo-placed-mark{
+      display:none!important;
+    }
+  }
+
+
+  /* v144: 공통 세로 A4 + 아이패드 출력 여백/사진/빈페이지 보정 */
+  @page{size:A4 portrait;margin:0;}
+
+  @media print{
+    html, body{
+      width:210mm!important;
+      min-width:210mm!important;
+      max-width:210mm!important;
+      margin:0!important;
+      padding:0!important;
+      background:#fff!important;
+      overflow:visible!important;
+      -webkit-print-color-adjust:exact!important;
+      print-color-adjust:exact!important;
+    }
+
+    .page{
+      width:210mm!important;
+      min-width:210mm!important;
+      max-width:210mm!important;
+      height:297mm!important;
+      min-height:297mm!important;
+      max-height:297mm!important;
+      margin:0!important;
+      padding:8mm 9mm 7mm!important;
+      background:#fff!important;
+      box-shadow:none!important;
+      overflow:hidden!important;
+      transform:none!important;
+      page-break-before:auto!important;
+      break-before:auto!important;
+      page-break-after:always!important;
+      break-after:page!important;
+      page-break-inside:avoid!important;
+      break-inside:avoid!important;
+    }
+
+    .page:last-of-type{
+      page-break-after:auto!important;
+      break-after:auto!important;
+    }
+
+    #page4.skip-print:not(.ipad-force-show){
+      display:none!important;
+      page-break-after:auto!important;
+      break-after:auto!important;
+    }
+  }
+
+  @media print{
+    body.ipad-pdf-mode .page{
+      width:210mm!important;
+      min-width:210mm!important;
+      max-width:210mm!important;
+      height:297mm!important;
+      min-height:297mm!important;
+      max-height:297mm!important;
+      margin:0!important;
+      padding:7mm 8mm 6mm!important;
+      overflow:hidden!important;
+      background:#fff!important;
+      box-shadow:none!important;
+      transform:none!important;
+      page-break-inside:avoid!important;
+      break-inside:avoid!important;
+    }
+
+    body.ipad-pdf-mode #page3,
+    body.ipad-pdf-mode #page4{
+      width:210mm!important;
+      height:297mm!important;
+      min-height:297mm!important;
+      max-height:297mm!important;
+      padding:5mm 7mm 4mm!important;
+      overflow:hidden!important;
+      page-break-inside:avoid!important;
+      break-inside:avoid!important;
+    }
+
+    body.ipad-pdf-mode #page3 .photo-page-title,
+    body.ipad-pdf-mode #page4 .photo-page-title{
+      height:6mm!important;
+      min-height:6mm!important;
+      max-height:6mm!important;
+      line-height:6mm!important;
+      margin:0 0 2mm 0!important;
+      padding:0!important;
+      overflow:hidden!important;
+    }
+
+    body.ipad-pdf-mode #page3 .photo-page-table,
+    body.ipad-pdf-mode #page4 .photo-page-table{
+      display:table!important;
+      width:196mm!important;
+      min-width:196mm!important;
+      max-width:196mm!important;
+      height:280mm!important;
+      min-height:280mm!important;
+      max-height:280mm!important;
+      margin:0 auto!important;
+      table-layout:fixed!important;
+      border-collapse:collapse!important;
+      overflow:hidden!important;
+      page-break-inside:avoid!important;
+      break-inside:avoid!important;
+    }
+
+    body.ipad-pdf-mode #page3 .photo-page-table tr:nth-child(odd),
+    body.ipad-pdf-mode #page4 .photo-page-table tr:nth-child(odd){
+      height:84mm!important;
+      min-height:84mm!important;
+      max-height:84mm!important;
+    }
+
+    body.ipad-pdf-mode #page3 .photo-page-table tr:nth-child(even),
+    body.ipad-pdf-mode #page4 .photo-page-table tr:nth-child(even){
+      height:9.3mm!important;
+      min-height:9.3mm!important;
+      max-height:9.3mm!important;
+    }
+
+    body.ipad-pdf-mode #page3 .photo-cell,
+    body.ipad-pdf-mode #page4 .photo-cell{
+      width:98mm!important;
+      min-width:98mm!important;
+      max-width:98mm!important;
+      height:84mm!important;
+      min-height:84mm!important;
+      max-height:84mm!important;
+      padding:0!important;
+      margin:0!important;
+      overflow:hidden!important;
+      vertical-align:middle!important;
+      background:#fff!important;
+      box-sizing:border-box!important;
+      border:1.25px solid #111!important;
+    }
+
+    body.ipad-pdf-mode #page3 .caption-cell,
+    body.ipad-pdf-mode #page4 .caption-cell{
+      height:9.3mm!important;
+      min-height:9.3mm!important;
+      max-height:9.3mm!important;
+      padding:0!important;
+      margin:0!important;
+      overflow:hidden!important;
+      vertical-align:middle!important;
+      text-align:center!important;
+      border:1.25px solid #111!important;
+      background:#fff!important;
+    }
+
+    body.ipad-pdf-mode #page3 .photo-box,
+    body.ipad-pdf-mode #page4 .photo-box{
+      display:block!important;
+      position:relative!important;
+      width:100%!important;
+      height:84mm!important;
+      min-height:84mm!important;
+      max-height:84mm!important;
+      padding:3mm!important;
+      margin:0!important;
+      box-sizing:border-box!important;
+      overflow:hidden!important;
+      background:#fff!important;
+      color:#999!important;
+      font-size:8pt!important;
+      line-height:1.2!important;
+    }
+
+    body.ipad-pdf-mode #page3 .photo-inner,
+    body.ipad-pdf-mode #page4 .photo-inner{
+      display:block!important;
+      position:relative!important;
+      width:100%!important;
+      height:100%!important;
+      min-height:100%!important;
+      max-height:100%!important;
+      margin:0!important;
+      padding:0!important;
+      overflow:hidden!important;
+      box-sizing:border-box!important;
+      background:#fff!important;
+    }
+
+    body.ipad-pdf-mode #page3 .photo-box img.auto-fit-photo,
+    body.ipad-pdf-mode #page4 .photo-box img.auto-fit-photo,
+    body.ipad-pdf-mode #page3 .photo-box img.drag-photo,
+    body.ipad-pdf-mode #page4 .photo-box img.drag-photo{
+      position:static!important;
+      width:100%!important;
+      height:100%!important;
+      min-width:100%!important;
+      min-height:100%!important;
+      max-width:none!important;
+      max-height:none!important;
+      object-fit:cover!important;
+      object-position:center center!important;
+      display:block!important;
+      visibility:visible!important;
+      opacity:1!important;
+      transform:none!important;
+      -webkit-transform:none!important;
+      margin:0!important;
+      padding:0!important;
+      -webkit-print-color-adjust:exact!important;
+      print-color-adjust:exact!important;
+    }
+
+    body.ipad-pdf-mode #page3 .photo-file-input,
+    body.ipad-pdf-mode #page4 .photo-file-input,
+    body.ipad-pdf-mode #page3 .photo-help,
+    body.ipad-pdf-mode #page4 .photo-help,
+    body.ipad-pdf-mode #page3 .photo-delete-btn,
+    body.ipad-pdf-mode #page4 .photo-delete-btn,
+    body.ipad-pdf-mode #page3 .photo-placed-mark,
+    body.ipad-pdf-mode #page4 .photo-placed-mark{
+      display:none!important;
+    }
+
+    body.ipad-pdf-mode #page4.ipad-force-show,
+    body.ipad-pdf-mode #page4.ipad-force-show.skip-print{
+      display:block!important;
+      visibility:visible!important;
+      opacity:1!important;
+    }
+
+    body.ipad-pdf-mode #page3 + #page4,
+    body.ipad-pdf-mode #page4 + #page5{
+      page-break-before:auto!important;
+      break-before:auto!important;
+    }
+  }
+
+
+  /* v132: 인쇄 하단 URL/작성일자만 흰색 처리, 페이지 번호는 유지 */
+  @media print{
+    .page-url,
+    .footer-url,
+    .print-url,
+    .github-url,
+    .page-date,
+    .footer-date,
+    .print-date,
+    .written-date,
+    .created-date,
+    .print-created-date{
+      color:#fff!important;
+      -webkit-text-fill-color:#fff!important;
+    }
+
+    .page-footer .url,
+    .page-footer .date,
+    .print-footer .url,
+    .print-footer .date,
+    .footer .url,
+    .footer .date{
+      color:#fff!important;
+      -webkit-text-fill-color:#fff!important;
+    }
+
+    /* 브라우저가 붙이는 인쇄 URL/작성일 영역으로 쓰는 좌측/우측 하단 텍스트만 숨김 */
+    .print-meta-left,
+    .print-meta-date,
+    .print-meta-url{
+      color:#fff!important;
+      -webkit-text-fill-color:#fff!important;
+    }
+
+    /* 페이지 번호 관련 클래스는 다시 검정으로 유지 */
+    .page-no,
+    .page-number,
+    .print-page-number,
+    .footer-page-number,
+    .page-footer .page-no,
+    .page-footer .page-number,
+    .print-footer .page-no,
+    .print-footer .page-number{
+      color:#111!important;
+      -webkit-text-fill-color:#111!important;
+    }
+  }
+
+
+  @media print{
+    [data-print-meta="url"],
+    [data-print-meta="date"]{
+      color:#fff!important;
+      -webkit-text-fill-color:#fff!important;
+    }
+    [data-print-meta="page"]{
+      color:#111!important;
+      -webkit-text-fill-color:#111!important;
+    }
+  }
+
+
+  .send-actions button.desktop-kakao{
+    background:#111827;
+    color:#fff;
+  }
+
+
+  /* v144: PDF 저장/인쇄 시 자격증명 3종을 안전점검표 뒤에 함께 출력 */
+  .cert-print-pages,
+  .cert-print-page{
+    display:none;
+  }
+
+  .cert-print-img{
+    display:block;
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    object-position:center center;
+  }
+
+  @media print{
+    .cert-print-pages{
+      display:block!important;
+    }
+
+    .cert-print-page{
+      display:block!important;
+      width:210mm!important;
+      min-width:210mm!important;
+      max-width:210mm!important;
+      height:297mm!important;
+      min-height:297mm!important;
+      max-height:297mm!important;
+      margin:0!important;
+      padding:8mm!important;
+      background:#fff!important;
+      box-shadow:none!important;
+      overflow:hidden!important;
+      page-break-before:auto!important;
+      break-before:auto!important;
+      page-break-after:always!important;
+      break-after:page!important;
+      page-break-inside:avoid!important;
+      break-inside:avoid!important;
+      box-sizing:border-box!important;
+    }
+
+    .cert-print-pages.skip-print,
+    .cert-print-pages.skip-print .cert-print-page{
+      display:none!important;
+    }
+
+    .cert-print-page.last-cert-print-page,
+    .cert-print-page:last-child{
+      page-break-after:auto!important;
+      break-after:auto!important;
+    }
+
+    .cert-print-img{
+      display:block!important;
+      width:100%!important;
+      height:100%!important;
+      max-width:100%!important;
+      max-height:100%!important;
+      object-fit:contain!important;
+      object-position:center center!important;
+      visibility:visible!important;
+      opacity:1!important;
+      -webkit-print-color-adjust:exact!important;
+      print-color-adjust:exact!important;
+    }
+  }
+
+
+  /* v144: PDF 저장/인쇄 버튼에서 바로 작동하는 자격증명 3종 인쇄 페이지 */
+  .cert-print-pages,
+  .cert-print-page{
+    display:none;
+  }
+
+  .cert-sheet{
+    position:relative;
+    width:100%;
+    height:100%;
+    background:#fff;
+    overflow:hidden;
+  }
+
+  .cert-print-img{
+    display:block;
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    object-position:center center;
+  }
+
+  .original-compare-stamp{
+    position:absolute;
+    right:16mm;
+    bottom:18mm;
+    width:74mm;
+    height:24mm;
+    border:0.65mm solid #005bac;
+    box-sizing:border-box;
+    background:rgba(255,255,255,0.92);
+    color:#005bac;
+    font-family:"Malgun Gothic","Apple SD Gothic Neo",Arial,sans-serif;
+    font-weight:900;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+  }
+
+  .original-compare-stamp .ocs-title{
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:7mm;
+    line-height:7mm;
+    border-bottom:0.45mm solid #005bac;
+    text-align:center;
+    font-size:12pt;
+    letter-spacing:1.5mm;
+    box-sizing:border-box;
+  }
+
+  .original-compare-stamp .ocs-body{
+    position:absolute;
+    left:0;
+    top:7mm;
+    width:49mm;
+    height:10mm;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:0.8mm;
+    font-size:8pt;
+    line-height:1.1;
+    text-align:center;
+  }
+
+  .original-compare-stamp .ocs-date{
+    position:absolute;
+    left:0;
+    bottom:1.5mm;
+    width:49mm;
+    text-align:center;
+    font-size:7.5pt;
+    font-weight:800;
+  }
+
+  .original-compare-stamp .ocs-seal{
+    position:absolute;
+    right:3.2mm;
+    top:8.1mm;
+    width:14mm;
+    height:14mm;
+    object-fit:contain;
+  }
+
+  .original-compare-stamp::after{
+    content:"";
+    position:absolute;
+    top:7mm;
+    bottom:0;
+    right:21mm;
+    border-left:0.45mm solid #005bac;
+  }
+
+  @media print{
+    .cert-print-pages:not(.skip-print){
+      display:block!important;
+    }
+
+    .cert-print-pages.skip-print,
+    .cert-print-pages.skip-print .cert-print-page{
+      display:none!important;
+    }
+
+    .cert-print-page{
+      display:block!important;
+      width:210mm!important;
+      min-width:210mm!important;
+      max-width:210mm!important;
+      height:297mm!important;
+      min-height:297mm!important;
+      max-height:297mm!important;
+      margin:0!important;
+      padding:8mm!important;
+      background:#fff!important;
+      box-shadow:none!important;
+      overflow:hidden!important;
+      page-break-before:auto!important;
+      break-before:auto!important;
+      page-break-after:always!important;
+      break-after:page!important;
+      page-break-inside:avoid!important;
+      break-inside:avoid!important;
+      box-sizing:border-box!important;
+    }
+
+    .cert-print-page.last-cert-print-page,
+    .cert-print-page:last-child{
+      page-break-after:auto!important;
+      break-after:auto!important;
+    }
+
+    .cert-sheet{
+      display:block!important;
+      position:relative!important;
+      width:100%!important;
+      height:100%!important;
+      background:#fff!important;
+      overflow:hidden!important;
+    }
+
+    .cert-print-img{
+      display:block!important;
+      width:100%!important;
+      height:100%!important;
+      max-width:100%!important;
+      max-height:100%!important;
+      object-fit:contain!important;
+      object-position:center center!important;
+      visibility:visible!important;
+      opacity:1!important;
+      -webkit-print-color-adjust:exact!important;
+      print-color-adjust:exact!important;
+    }
+
+    .original-compare-stamp{
+      display:block!important;
+      visibility:visible!important;
+      opacity:1!important;
+      -webkit-print-color-adjust:exact!important;
+      print-color-adjust:exact!important;
+    }
+  }
+
+
+  /* v144: 기존 제출용 문구 박스는 존치하고, 원본대조필은 투명 배경으로 별도 첨부 */
+  .cert-print-pages,
+  .cert-print-page{
+    display:none;
+  }
+
+  .cert-sheet{
+    position:relative;
+    width:100%;
+    height:100%;
+    background:#fff;
+    overflow:hidden;
+  }
+
+  .cert-print-img{
+    display:block;
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    object-position:center center;
+  }
+
+  .limited-submit-box{
+    position:absolute;
+    left:13mm;
+    bottom:16mm;
+    width:92mm;
+    min-height:16mm;
+    border:0.55mm solid #d40000;
+    box-sizing:border-box;
+    background:transparent;
+    color:#d40000;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:1.8mm 2.4mm;
+    font-family:"Malgun Gothic","Apple SD Gothic Neo",Arial,sans-serif;
+    font-weight:900;
+    font-size:7.2pt;
+    line-height:1.22;
+    text-align:center;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+  }
+
+  .original-compare-stamp{
+    position:absolute;
+    right:13mm;
+    bottom:16mm;
+    width:62mm;
+    height:21mm;
+    border:0.55mm solid #005bac;
+    box-sizing:border-box;
+    background:transparent!important;
+    color:#005bac;
+    font-family:"Malgun Gothic","Apple SD Gothic Neo",Arial,sans-serif;
+    font-weight:900;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+  }
+
+  .original-compare-stamp .ocs-title{
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:6.1mm;
+    line-height:6.1mm;
+    border-bottom:0.38mm solid #005bac;
+    text-align:center;
+    font-size:10.2pt;
+    letter-spacing:1.15mm;
+    box-sizing:border-box;
+  }
+
+  .original-compare-stamp .ocs-body{
+    position:absolute;
+    left:0;
+    top:6.1mm;
+    width:42mm;
+    height:9.3mm;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:0.55mm;
+    font-size:7.0pt;
+    line-height:1.08;
+    text-align:center;
+  }
+
+  .original-compare-stamp .ocs-date{
+    position:absolute;
+    left:0;
+    bottom:1.2mm;
+    width:42mm;
+    text-align:center;
+    font-size:6.8pt;
+    font-weight:800;
+  }
+
+  .original-compare-stamp .ocs-seal{
+    position:absolute;
+    right:2.7mm;
+    top:7.2mm;
+    width:12.5mm;
+    height:12.5mm;
+    object-fit:contain;
+  }
+
+  .original-compare-stamp::after{
+    content:"";
+    position:absolute;
+    top:6.1mm;
+    bottom:0;
+    right:17.6mm;
+    border-left:0.38mm solid #005bac;
+  }
+
+  @media print{
+    .cert-print-pages:not(.skip-print){
+      display:block!important;
+    }
+
+    .cert-print-pages.skip-print,
+    .cert-print-pages.skip-print .cert-print-page{
+      display:none!important;
+    }
+
+    .cert-print-page{
+      display:block!important;
+      width:210mm!important;
+      min-width:210mm!important;
+      max-width:210mm!important;
+      height:297mm!important;
+      min-height:297mm!important;
+      max-height:297mm!important;
+      margin:0!important;
+      padding:8mm!important;
+      background:#fff!important;
+      box-shadow:none!important;
+      overflow:hidden!important;
+      page-break-before:auto!important;
+      break-before:auto!important;
+      page-break-after:always!important;
+      break-after:page!important;
+      page-break-inside:avoid!important;
+      break-inside:avoid!important;
+      box-sizing:border-box!important;
+    }
+
+    .cert-print-page.last-cert-print-page,
+    .cert-print-page:last-child{
+      page-break-after:auto!important;
+      break-after:auto!important;
+    }
+
+    .cert-sheet{
+      display:block!important;
+      position:relative!important;
+      width:100%!important;
+      height:100%!important;
+      background:#fff!important;
+      overflow:hidden!important;
+    }
+
+    .cert-print-img{
+      display:block!important;
+      width:100%!important;
+      height:100%!important;
+      max-width:100%!important;
+      max-height:100%!important;
+      object-fit:contain!important;
+      object-position:center center!important;
+      visibility:visible!important;
+      opacity:1!important;
+      -webkit-print-color-adjust:exact!important;
+      print-color-adjust:exact!important;
+    }
+
+    .limited-submit-box,
+    .original-compare-stamp{
+      display:flex!important;
+      visibility:visible!important;
+      opacity:1!important;
+      background:transparent!important;
+      -webkit-print-color-adjust:exact!important;
+      print-color-adjust:exact!important;
+    }
+
+    .original-compare-stamp{
+      display:block!important;
+    }
+  }
+
+
+  /* v144: 자격증명 기존 제출문구 주소 자동입력 + 원본대조필 도장 17mm */
+  .limited-submit-box{
+    left:12mm!important;
+    bottom:15mm!important;
+    width:96mm!important;
+    min-height:18mm!important;
+    padding:2mm 2.4mm!important;
+    border:0.55mm solid #d40000!important;
+    background:#fff!important;
+    color:#d40000!important;
+    font-size:7.1pt!important;
+    line-height:1.22!important;
+    z-index:30!important;
+  }
+
+  .limited-submit-text{
+    width:100%!important;
+    word-break:keep-all!important;
+    overflow-wrap:break-word!important;
+  }
+
+  .original-compare-stamp{
+    right:12mm!important;
+    bottom:15mm!important;
+    width:66mm!important;
+    height:23mm!important;
+    background:transparent!important;
+    z-index:40!important;
+  }
+
+  .original-compare-stamp .ocs-title{
+    height:6.4mm!important;
+    line-height:6.4mm!important;
+    font-size:10.4pt!important;
+  }
+
+  .original-compare-stamp .ocs-body{
+    top:6.4mm!important;
+    width:43mm!important;
+    height:9.6mm!important;
+    font-size:7.1pt!important;
+  }
+
+  .original-compare-stamp .ocs-date{
+    width:43mm!important;
+    font-size:6.9pt!important;
+  }
+
+  .original-compare-stamp .ocs-seal{
+    width:17mm!important;
+    height:17mm!important;
+    right:2.1mm!important;
+    top:5.7mm!important;
+    object-fit:contain!important;
+  }
+
+  .original-compare-stamp::after{
+    top:6.4mm!important;
+    right:20.5mm!important;
+  }
+
+  @media print{
+    .limited-submit-box{
+      background:#fff!important;
+      -webkit-print-color-adjust:exact!important;
+      print-color-adjust:exact!important;
+    }
+
+    .original-compare-stamp{
+      background:transparent!important;
+      -webkit-print-color-adjust:exact!important;
+      print-color-adjust:exact!important;
+    }
+
+    .original-compare-stamp .ocs-seal{
+      width:17mm!important;
+      height:17mm!important;
+    }
+  }
+
+
+  /* v144: 모든 인쇄/PDF 저장 방향을 A4 세로로 강제 */
+  @page{size:A4 portrait;margin:0;}
+
+  @media print{
+    html,
+    body{
+      width:210mm!important;
+      min-width:210mm!important;
+      max-width:210mm!important;
+      height:auto!important;
+      margin:0!important;
+      padding:0!important;
+      overflow:visible!important;
+    }
+
+    body.portrait-print-mode .page,
+    body.portrait-print-mode .cert-print-page{
+      width:210mm!important;
+      min-width:210mm!important;
+      max-width:210mm!important;
+      height:297mm!important;
+      min-height:297mm!important;
+      max-height:297mm!important;
+      transform:none!important;
+      -webkit-transform:none!important;
+      rotate:0deg!important;
+      page-orientation:upright!important;
+      box-sizing:border-box!important;
+    }
+
+    body.portrait-print-mode .cert-sheet{
+      width:100%!important;
+      height:100%!important;
+      transform:none!important;
+      -webkit-transform:none!important;
+      rotate:0deg!important;
+    }
+
+    body.portrait-print-mode .cert-print-img{
+      width:100%!important;
+      height:100%!important;
+      object-fit:contain!important;
+      object-position:center center!important;
+      transform:none!important;
+      -webkit-transform:none!important;
+      rotate:0deg!important;
+    }
+
+    body.portrait-print-mode .original-compare-stamp,
+    body.portrait-print-mode .limited-submit-box{
+      transform:none!important;
+      -webkit-transform:none!important;
+      rotate:0deg!important;
+    }
+  }
+
+
+  /* v144: 일반 PDF 저장/인쇄도 별도 세로 인쇄문서로 출력되도록 최종 보정 */
+  @page{
+    size:A4 portrait;
+    margin:0;
+  }
+
+  @media print{
+    html,
+    body{
+      width:210mm!important;
+      min-width:210mm!important;
+      max-width:210mm!important;
+      height:auto!important;
+      margin:0!important;
+      padding:0!important;
+      overflow:visible!important;
+    }
+
+    .page,
+    .cert-print-page,
+    .page.ipad-print-page,
+    .cert-print-page.ipad-print-page{
+      width:210mm!important;
+      min-width:210mm!important;
+      max-width:210mm!important;
+      height:auto!important;
+      max-height:none!important;
+      transform:none!important;
+      -webkit-transform:none!important;
+      rotate:0deg!important;
+      writing-mode:horizontal-tb!important;
+      direction:ltr!important;
+      box-sizing:border-box!important;
+    }
+
+    .title-wrap,
+    .title-line,
+    table,
+    tr,
+    td,
+    th,
+    .cert-sheet,
+    .cert-print-img{
+      transform:none!important;
+      -webkit-transform:none!important;
+      rotate:0deg!important;
+      writing-mode:horizontal-tb!important;
+    }
+  }
+
+
+  /* v144: 원본대조필 박스 내부 흰색 + 글씨 검정, 기존 한정 제출함 문구 확대 */
+  .limited-submit-box{
+    font-size:8.2pt!important;
+    line-height:1.28!important;
+    font-weight:900!important;
+    min-height:19mm!important;
+    padding:2.2mm 2.6mm!important;
+  }
+
+  .limited-submit-text{
+    font-size:8.2pt!important;
+    line-height:1.28!important;
+    font-weight:900!important;
+  }
+
+  .original-compare-stamp{
+    background:#fff!important;
+    color:#111!important;
+    border-color:#005bac!important;
+  }
+
+  .original-compare-stamp .ocs-title,
+  .original-compare-stamp .ocs-body,
+  .original-compare-stamp .ocs-date{
+    color:#111!important;
+  }
+
+  .original-compare-stamp .ocs-title{
+    border-bottom-color:#005bac!important;
+  }
+
+  .original-compare-stamp::after{
+    border-left-color:#005bac!important;
+  }
+
+  @media print{
+    .limited-submit-box,
+    .limited-submit-text{
+      font-size:8.2pt!important;
+      line-height:1.28!important;
+      font-weight:900!important;
+      -webkit-print-color-adjust:exact!important;
+      print-color-adjust:exact!important;
+    }
+
+    .original-compare-stamp{
+      background:#fff!important;
+      color:#111!important;
+      border-color:#005bac!important;
+      -webkit-print-color-adjust:exact!important;
+      print-color-adjust:exact!important;
+    }
+
+    .original-compare-stamp .ocs-title,
+    .original-compare-stamp .ocs-body,
+    .original-compare-stamp .ocs-date{
+      color:#111!important;
+    }
+  }
+
+
+  /* v144: 원본대조필 글씨 검정 확정 + 건축사자격증/사업자등록증 박스 보정 */
+  .original-compare-stamp,
+  .original-compare-stamp *,
+  .original-compare-stamp .ocs-title,
+  .original-compare-stamp .ocs-body,
+  .original-compare-stamp .ocs-body div,
+  .original-compare-stamp .ocs-date{
+    color:#000!important;
+    -webkit-text-fill-color:#000!important;
+    text-shadow:none!important;
+  }
+
+  .original-compare-stamp{
+    background:#fff!important;
+    border-color:#005bac!important;
+  }
+
+  .original-compare-stamp .ocs-title{
+    border-bottom-color:#005bac!important;
+  }
+
+  .original-compare-stamp::after{
+    border-left-color:#005bac!important;
+  }
+
+  /* 건축사 자격증: 국토교통부장관 도장 안 가리게 두 박스 모두 더 아래로 */
+  #certPrintPage1 .limited-submit-box{
+    bottom:6mm!important;
+  }
+
+  #certPrintPage1 .original-compare-stamp{
+    bottom:6mm!important;
+  }
+
+  /* 사업자등록증에도 한정하여 제출함 박스 적용 */
+  #certPrintPage2 .limited-submit-box{
+    left:12mm!important;
+    bottom:15mm!important;
+    width:96mm!important;
+    min-height:19mm!important;
+    padding:2.2mm 2.6mm!important;
+    border:0.55mm solid #d40000!important;
+    background:#fff!important;
+    color:#d40000!important;
+    font-size:8.2pt!important;
+    line-height:1.28!important;
+    font-weight:900!important;
+    z-index:30!important;
+  }
+
+  #certPrintPage2 .limited-submit-text{
+    color:#d40000!important;
+    -webkit-text-fill-color:#d40000!important;
+    font-size:8.2pt!important;
+    line-height:1.28!important;
+    font-weight:900!important;
+  }
+
+  @media print{
+    .original-compare-stamp,
+    .original-compare-stamp *,
+    .original-compare-stamp .ocs-title,
+    .original-compare-stamp .ocs-body,
+    .original-compare-stamp .ocs-body div,
+    .original-compare-stamp .ocs-date{
+      color:#000!important;
+      -webkit-text-fill-color:#000!important;
+      text-shadow:none!important;
+    }
+
+    .original-compare-stamp{
+      background:#fff!important;
+      border-color:#005bac!important;
+      -webkit-print-color-adjust:exact!important;
+      print-color-adjust:exact!important;
+    }
+
+    #certPrintPage1 .limited-submit-box,
+    #certPrintPage1 .original-compare-stamp{
+      bottom:6mm!important;
+    }
+
+    #certPrintPage2 .limited-submit-box{
+      display:flex!important;
+      bottom:15mm!important;
+      background:#fff!important;
+      color:#d40000!important;
+      -webkit-text-fill-color:#d40000!important;
+      -webkit-print-color-adjust:exact!important;
+      print-color-adjust:exact!important;
+    }
+  }
+
 </style>
 
 <link rel="manifest" href="manifest.webmanifest">
@@ -3919,9 +5373,10 @@
 </head>
 <body>
 <div class="toolbar">
-  <strong>외도민 안전점검표 현장발송앱 PWA v113</strong>
+  <strong>외도민 안전점검표 현장발송앱 PWA v144</strong>
   <button class="primary" onclick="saveForm()">입력값 저장</button>
   <button onclick="printWithPdfTitle()">PDF 저장 / 인쇄</button>
+  <button onclick="printIpadPdf()">아이패드 PDF 인쇄</button>
   <button class="warn" onclick="fillSample()">샘플값 입력</button>
   <button class="danger" onclick="clearForm()">초기화</button>
 </div>
@@ -3968,14 +5423,14 @@
   </div>
   <div class="send-actions">
     <button class="primary" onclick="printWithPdfTitle()">① PDF 저장 / 인쇄</button>
+    <button class="ipad" onclick="printIpadPdf()">아이패드 PDF 인쇄</button>
     <button class="kakao" onclick="prepareKakaoSend()">카카오톡 보내기</button>
+    <button class="kakao desktop-kakao" onclick="prepareKakaoDesktopSend()">카톡(데스크탑)</button>
     <button class="email" onclick="prepareEmailSend()">이메일 보내기</button>
-    <button onclick="copySendMessage()">발송문 복사</button>
-    <button onclick="downloadBuiltInCerts()">자격증명 3종 다운로드</button>
   </div>
   <div class="send-note">
-    사용 순서: <b>PDF 저장 / 인쇄</b>로 안전점검표 PDF를 만든 뒤, 반드시 위의 “완성된 안전점검표 PDF 선택(필수)”에 그 PDF를 선택하세요. PDF를 선택하지 않으면 카카오톡/이메일에 안전점검표가 첨부되지 않습니다.
-    <b>카카오톡 보내기</b>는 발송내용과 PDF·자격증명 서류를 공유창으로 준비하며, 최종 발송은 카카오톡에서 직접 선택합니다. 개설신고확인증과 건축사자격증 사본에는 신청주소 기준 제출용 문구가 빨간 박스로 자동 표시됩니다.
+    사용 순서: <b>PDF 저장 / 인쇄</b> 버튼을 누르면 안전점검표 뒤에 기존 제출용 문구와 원본대조필이 함께 적용된 자격증명 3종이 인쇄/PDF 저장됩니다. 저장한 PDF를 위의 “완성된 안전점검표 PDF 선택(필수)”에 선택하세요. 아이패드에서는 일반 PDF 저장 대신 <b>아이패드 PDF 인쇄</b> 버튼을 사용하세요. 아이패드는 210mm×297mm 크기의 별도 인쇄문서를 만들어 안드로이드 출력 결과와 최대한 동일하게 인쇄되도록 보정했습니다. 아이패드는 210mm×297mm 크기의 별도 인쇄문서를 만들어 안드로이드 출력 결과와 최대한 동일하게 인쇄되도록 보정했습니다. PDF를 선택하지 않으면 카카오톡/이메일에 안전점검표가 첨부되지 않습니다.
+    <b>카카오톡 보내기</b>는 발송내용을 먼저 복사하고 PDF·자격증명 서류를 공유창으로 준비합니다. 기존 카카오톡 보내기는 안드로이드/아이패드 공유창 방식으로 유지합니다. 데스크톱에서는 카톡(데스크탑) 버튼을 사용하며, 발송문은 복사하고 파일 클립보드는 브라우저가 허용하는 범위에서만 시도합니다. 개설신고확인증과 건축사자격증 사본에는 신청주소 기준 제출용 문구가 빨간 박스로 자동 표시됩니다.
     <b>이메일 보내기</b>는 네이버메일 또는 G메일 메일쓰기 화면을 열고 받는사람·제목·본문을 준비합니다. 최종 발송은 직접 확인 후 누르시면 됩니다.
   </div>
 </div>
@@ -4214,7 +5669,7 @@
       <td class="detail-cell"><textarea id="detail_15"></textarea></td>
     </tr>
   </table>
-  <div class="footer-memo">※ 첫째장 입력형 / 현장발송앱 PWA v113</div>
+  <div class="footer-memo">※ 첫째장 입력형 / 현장발송앱 PWA v144</div>
 </section>
 
 <section class="page" id="page2">
@@ -4265,7 +5720,7 @@
     <tr>
       <td rowspan="2">
         <div class="summary-title">점검 총평 (향후 추가 안전진단 등 참고할 사항 등)</div>
-        <textarea id="summaryText" class="summary-textarea">점검 결과 “하등급”이 (자동산정)개로 조사되었으며 주요구조체의 상태는 전반적으로 (자동산정)인것으로 확인되었습니다. 하등급의 내용도 있지만 전반적으로  안전상의 문제는 없는 것으로 확인되어 점검 등급을 “(자동산정)”으로 평가함.
+        <textarea id="summaryText" class="summary-textarea">점검 결과 “하등급”이 (자동산정)개로 조사되었으며 주요구조체의 상태는 전반적으로 (자동산정)인 것으로 확인되었습니다. 하등급의 내용은 없으며 전반적으로 안전상의 문제는 없는 것으로 확인되어 점검 등급을 “(자동산정)로” 평가함.
 ‘외국인 관광 도시민박업’에 (자동산정) 건축물임을 확인함.</textarea>
       </td>
       <td class="grade-cell">점검등급</td>
@@ -4469,6 +5924,63 @@
 </section>
 
 
+
+
+<div id="certificatePrintPages" class="cert-print-pages" aria-hidden="true">
+  <section class="page cert-print-page" id="certPrintPage0">
+    <div class="cert-sheet">
+      <img class="cert-print-img" id="certPrintImg0" src="assets/건축사사무소_개설신고확인증_스탬프원본.jpg" alt="건축사사무소 개설신고확인증">
+      <div class="limited-submit-box">
+        <div class="limited-submit-text">이 문서는 외국인관광 도시민박업 신청용으로 <span data-submit-address></span>에 한정하여 제출함</div>
+      </div>
+      <div class="original-compare-stamp" style="background:#fff;color:#000!important;-webkit-text-fill-color:#000!important;">
+        <div class="ocs-title">원 본 대 조 필</div>
+        <div class="ocs-body">
+          <div>위 사본은 원본과 대조하여</div>
+          <div>틀림없음을 확인합니다.</div>
+        </div>
+        <div class="ocs-date" data-cert-date="today"></div>
+        <img class="ocs-seal" src="assets/사용인감도장_점검자서명.png" alt="안전점검표 적용 도장">
+      </div>
+    </div>
+  </section>
+  <section class="page cert-print-page" id="certPrintPage1">
+    <div class="cert-sheet">
+      <img class="cert-print-img" id="certPrintImg1" src="assets/건축사자격증사본_스탬프원본.jpg" alt="건축사자격증사본">
+      <div class="limited-submit-box">
+        <div class="limited-submit-text">이 문서는 외국인관광 도시민박업 신청용으로 <span data-submit-address></span>에 한정하여 제출함</div>
+      </div>
+      <div class="original-compare-stamp" style="background:#fff;color:#000!important;-webkit-text-fill-color:#000!important;">
+        <div class="ocs-title">원 본 대 조 필</div>
+        <div class="ocs-body">
+          <div>위 사본은 원본과 대조하여</div>
+          <div>틀림없음을 확인합니다.</div>
+        </div>
+        <div class="ocs-date" data-cert-date="today"></div>
+        <img class="ocs-seal" src="assets/사용인감도장_점검자서명.png" alt="안전점검표 적용 도장">
+      </div>
+    </div>
+  </section>
+  <section class="page cert-print-page last-cert-print-page" id="certPrintPage2">
+    <div class="cert-sheet">
+      <img class="cert-print-img" id="certPrintImg2" src="assets/사업자등록증.jpg" alt="사업자등록증사본">
+      <div class="limited-submit-box">
+        <div class="limited-submit-text">이 문서는 외국인관광 도시민박업 신청용으로 <span data-submit-address></span>에 한정하여 제출함</div>
+      </div>
+      <div class="original-compare-stamp" style="background:#fff;color:#000!important;-webkit-text-fill-color:#000!important;">
+        <div class="ocs-title">원 본 대 조 필</div>
+        <div class="ocs-body">
+          <div>위 사본은 원본과 대조하여</div>
+          <div>틀림없음을 확인합니다.</div>
+        </div>
+        <div class="ocs-date" data-cert-date="today"></div>
+        <img class="ocs-seal" src="assets/사용인감도장_점검자서명.png" alt="안전점검표 적용 도장">
+      </div>
+    </div>
+  </section>
+</div>
+
+
 <div class="signature-modal" id="signatureModal">
   <div class="signature-panel">
     <h3>서명 입력</h3>
@@ -4534,7 +6046,9 @@ function buildRows(){
 
 function setSingleCheckboxBehavior(){
   document.addEventListener("change", (e) => {
-    if(e.target.type === "checkbox" && e.target.name && (e.target.name.startsWith("status_") || e.target.name === "structure" || e.target.name === "interviewRole")){
+    // v144: 구조형식은 RC라멘조+철골조처럼 2개 이상 선택 가능해야 하므로 단일선택 대상에서 제외
+    // 면담자 구분처럼 실제로 단일 선택이 필요한 항목만 기존 방식 유지
+    if(e.target.type === "checkbox" && e.target.name && (e.target.name.startsWith("status_") || e.target.name === "interviewRole")){
       if(e.target.checked){
         document.querySelectorAll(`input[name="${e.target.name}"]`).forEach(cb => {
           if(cb !== e.target) cb.checked = false;
@@ -4639,11 +6153,11 @@ function loadForm(){
   const candidateKeys = [
     STABLE_STORAGE_KEY,
     VERSION_STORAGE_KEY,
-    "safetyFieldSendAppPWA_V113",
-    "safetyFieldSendAppPWA_V113",
-    "safetyFieldSendAppPWA_V113",
-    "safetyFieldSendAppPWA_V98",
-    "safetyFieldSendAppPWA_V97",
+    "safetyFieldSendAppPWA_V144",
+    "safetyFieldSendAppPWA_V144",
+    "safetyFieldSendAppPWA_V144",
+    "safetyFieldSendAppPWA_V144",
+    "safetyFieldSendAppPWA_V144",
     "safetyFieldSendAppV96",
     "safetyFieldSendAppV95",
     "safetyFieldSendAppV94",
@@ -4714,11 +6228,11 @@ function clearForm(){
     [
       STABLE_STORAGE_KEY,
       VERSION_STORAGE_KEY,
-      "safetyFieldSendAppPWA_V113",
-      "safetyFieldSendAppPWA_V113",
-      "safetyFieldSendAppPWA_V113",
-      "safetyFieldSendAppPWA_V98",
-      "safetyFieldSendAppPWA_V97",
+      "safetyFieldSendAppPWA_V144",
+      "safetyFieldSendAppPWA_V144",
+      "safetyFieldSendAppPWA_V144",
+      "safetyFieldSendAppPWA_V144",
+      "safetyFieldSendAppPWA_V144",
       "safetyFieldSendAppV96",
       "safetyFieldSendAppV95",
       "safetyFieldSendAppV94",
@@ -4759,7 +6273,7 @@ function fillSample(){
 
 function clearForm(){
   if(confirm("입력값을 모두 초기화할까요?")){
-    localStorage.removeItem("safetyFieldSendAppPWA_V113");
+    localStorage.removeItem("safetyFieldSendAppPWA_V144");
     location.reload();
   }
 }
@@ -5284,25 +6798,39 @@ function calculateMainStructureStatus(){
   return "양호";
 }
 
+function gradeWithParticle(grade){
+  const map = {
+    "우수":"우수로",
+    "양호":"양호로",
+    "보통":"보통으로",
+    "미흡":"미흡으로",
+    "불량":"불량으로"
+  };
+  return map[grade] || `${grade}으로`;
+}
+
 function updateSummaryTextAuto(lowCount, grade){
   const summary = document.getElementById("summaryText");
   if(!summary) return;
 
-  // v94: 총평의 "전반적으로 ○○인것"은 주요구조체 별도판정이 아니라
   // 최종 점검등급 자동산정값을 그대로 사용합니다.
   const overallStatus = grade;
   const safetyText = (grade === "미흡" || grade === "불량") ? "불안전한" : "안전한";
+  const gradeText = gradeWithParticle(grade);
 
   let gradeComment = "";
   if(grade === "미흡"){
-    gradeComment = "정밀안전점검이 필요함";
+    gradeComment = `하등급의 내용이 확인되어 점검 등급을 “${gradeText}” 평가하며 정밀안전점검이 필요함`;
   }else if(grade === "불량"){
-    gradeComment = "정밀안전진단이 필요함";
+    gradeComment = `하등급의 내용이 다수 확인되어 점검 등급을 “${gradeText}” 평가하며 정밀안전진단이 필요함`;
   }else{
-    gradeComment = `하등급의 내용도 있지만 전반적으로 안전상의 문제는 없는 것으로 확인되어 점검 등급을 “${grade}”으로 평가함`;
+    const lowText = lowCount === 0
+      ? "하등급의 내용은 없으며"
+      : "하등급의 내용이 일부 있으나";
+    gradeComment = `${lowText} 전반적으로 안전상의 문제는 없는 것으로 확인되어 점검 등급을 “${gradeText}” 평가함`;
   }
 
-  const finalText = `점검 결과 “하등급”이 ${lowCount}개로 조사되었으며 주요구조체의 상태는 전반적으로 ${overallStatus}인것으로 확인되었습니다. ${gradeComment}.
+  const finalText = `점검 결과 “하등급”이 ${lowCount}개로 조사되었으며 주요구조체의 상태는 전반적으로 ${overallStatus}인 것으로 확인되었습니다. ${gradeComment}.
 ‘외국인 관광 도시민박업’에 ${safetyText} 건축물임을 확인함.`;
 
   summary.value = finalText;
@@ -5403,7 +6931,7 @@ document.addEventListener("change", (e) => {
 
 
 const STABLE_STORAGE_KEY = "mukjulSafetyInspectionCurrentData";
-const VERSION_STORAGE_KEY = "safetyFieldSendAppPWA_V113";
+const VERSION_STORAGE_KEY = "safetyFieldSendAppPWA_V144";
 
 function formatKoreanDateForFile(dateValue){
   if(!dateValue) return "";
@@ -5467,11 +6995,17 @@ function syncFieldSendPanelToPage1(){
   syncDistrictFromApplicationAddress();
 }
 
+function cleanFileNameText(text){
+  return String(text || "")
+    .replace(/[\\/:*?"<>|]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
 function buildPdfFileBaseName(){
-  const district = (document.getElementById("district")?.innerText || "마포구").trim() || "마포구";
-  const inspectDate = getTextValue("inspectDate");
-  const dateText = formatKoreanDateForFile(inspectDate);
-  return dateText ? `${district} 건축물 안전점검표(${dateText})` : `${district} 건축물 안전점검표`;
+  const addressText = getTextValue("applicationAddressSend") || getTextValue("address") || (document.getElementById("district")?.innerText || "마포구");
+  const cleanAddress = cleanFileNameText(addressText) || "안전점검대상지";
+  return `${cleanAddress} 건축물 안전점검표`;
 }
 
 function updatePdfDocumentTitle(){
@@ -5479,10 +7013,703 @@ function updatePdfDocumentTitle(){
   return document.title;
 }
 
-function printWithPdfTitle(){
+
+
+function hasAnyPage4PhotoForPrint(){
+  for(let i = 6; i <= 11; i++){
+    const box = document.getElementById("photoBox" + i);
+    if(box && (box.dataset.image || box.querySelector("img"))){
+      return true;
+    }
+  }
+  return false;
+}
+
+function prepareIpadPhotoPrintState(){
+  const page4 = document.getElementById("page4");
+  updatePage4PrintVisibility();
+
+  if(page4){
+    if(hasAnyPage4PhotoForPrint()){
+      page4.classList.remove("skip-print");
+      page4.classList.add("ipad-force-show");
+    }else{
+      page4.classList.remove("ipad-force-show");
+    }
+  }
+
+  for(let i = 0; i <= 11; i++){
+    const box = document.getElementById("photoBox" + i);
+    const cell = document.getElementById("photoCell" + i);
+    if(box && cell && (box.dataset.image || box.querySelector("img"))){
+      cell.classList.add("has-photo");
+    }
+  }
+}
+
+function waitForIpadPrintImages(timeoutMs=2500){
+  const imgs = Array.from(document.querySelectorAll("#page3 img.auto-fit-photo, #page4 img.auto-fit-photo, .signature-box img"));
+  if(imgs.length === 0) return Promise.resolve();
+
+  return new Promise(resolve => {
+    let done = false;
+    let remain = imgs.length;
+    const finishOne = () => {
+      remain -= 1;
+      if(remain <= 0 && !done){
+        done = true;
+        resolve();
+      }
+    };
+
+    const timer = setTimeout(() => {
+      if(!done){
+        done = true;
+        resolve();
+      }
+    }, timeoutMs);
+
+    imgs.forEach(img => {
+      if(img.complete && img.naturalWidth){
+        finishOne();
+      }else{
+        img.addEventListener("load", finishOne, {once:true});
+        img.addEventListener("error", finishOne, {once:true});
+      }
+    });
+  });
+}
+
+
+
+
+function fileToDataUrl(file){
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+async function prepareCertificatePrintPages(){
+  const wrap = document.getElementById("certificatePrintPages");
+  if(!wrap) return;
+
+  const includeCerts = document.getElementById("includeCertFiles");
+  if(includeCerts && !includeCerts.checked){
+    wrap.classList.add("skip-print");
+    wrap.querySelectorAll("img.cert-print-img").forEach(img => img.removeAttribute("src"));
+    return;
+  }
+
+  wrap.classList.remove("skip-print");
+
+  const files = await getBuiltInCertFiles();
+  for(let i = 0; i < 3; i++){
+    const img = document.getElementById("certPrintImg" + i);
+    if(!img || !files[i]) continue;
+    img.src = await fileToDataUrl(files[i]);
+  }
+}
+
+function getCertificatePrintPageHtml(){
+  const wrap = document.getElementById("certificatePrintPages");
+  if(!wrap || wrap.classList.contains("skip-print")) return [];
+  const pages = Array.from(wrap.querySelectorAll(".cert-print-page"));
+  return pages
+    .filter(page => page.querySelector("img.cert-print-img[src]"))
+    .map(page => {
+      const clone = page.cloneNode(true);
+      clone.classList.add("ipad-print-page");
+      clone.classList.remove("skip-print");
+      return clone.outerHTML;
+    });
+}
+
+
+function applyImportantStyle(el, styles){
+  if(!el) return;
+  Object.entries(styles).forEach(([key, value]) => {
+    el.style.setProperty(key, value, "important");
+  });
+}
+
+function clonePageForIpadPrint(page){
+  const clone = page.cloneNode(true);
+
+  const originalControls = page.querySelectorAll("input, textarea, select");
+  const clonedControls = clone.querySelectorAll("input, textarea, select");
+
+  originalControls.forEach((origin, idx) => {
+    const target = clonedControls[idx];
+    if(!target) return;
+
+    if(target.type === "file"){
+      target.remove();
+      return;
+    }
+
+    if(target.tagName === "TEXTAREA"){
+      target.textContent = origin.value || "";
+      target.value = origin.value || "";
+      return;
+    }
+
+    if(target.tagName === "SELECT"){
+      Array.from(target.options).forEach(option => {
+        option.removeAttribute("selected");
+        if(option.value === origin.value) option.setAttribute("selected", "selected");
+      });
+      target.value = origin.value;
+      return;
+    }
+
+    if(target.type === "checkbox" || target.type === "radio"){
+      if(origin.checked){
+        target.setAttribute("checked", "checked");
+        target.checked = true;
+      }else{
+        target.removeAttribute("checked");
+        target.checked = false;
+      }
+      return;
+    }
+
+    target.setAttribute("value", origin.value || "");
+    target.value = origin.value || "";
+  });
+
+  // iPad 인쇄용 사진은 기존 CSS 충돌을 피하기 위해 사진 DOM을 새로 구성합니다.
+  for(let i = 0; i <= 11; i++){
+    const originBox = document.getElementById("photoBox" + i);
+    const cloneBox = clone.querySelector("#photoBox" + i);
+    const cloneCell = clone.querySelector("#photoCell" + i);
+
+    if(originBox && cloneBox && (originBox.dataset.image || originBox.querySelector("img"))){
+      const src = originBox.dataset.image || originBox.querySelector("img")?.src;
+      if(src){
+        cloneBox.textContent = "";
+        cloneBox.dataset.image = src;
+
+        const inner = document.createElement("div");
+        inner.className = "photo-inner ipad-photo-inner";
+        applyImportantStyle(inner, {
+          "position":"absolute",
+          "display":"block",
+          "left":"0",
+          "right":"0",
+          "top":"0",
+          "bottom":"0",
+          "width":"auto",
+          "height":"auto",
+          "overflow":"hidden",
+          "box-sizing":"border-box",
+          "background-color":"#fff"
+        });
+
+        const img = document.createElement("img");
+        img.className = "auto-fit-photo ipad-print-photo";
+        img.id = "photoImg" + i;
+        img.alt = "점검사진" + (i + 1);
+        img.src = src;
+        applyImportantStyle(img, {
+          "position":"absolute",
+          "left":"0",
+          "top":"0",
+          "width":"100%",
+          "height":"100%",
+          "min-width":"100%",
+          "min-height":"100%",
+          "max-width":"none",
+          "max-height":"none",
+          "object-fit":"cover",
+          "object-position":"center center",
+          "display":"block",
+          "visibility":"visible",
+          "opacity":"1",
+          "transform":"none",
+          "-webkit-transform":"none",
+          "margin":"0",
+          "padding":"0",
+          "-webkit-print-color-adjust":"exact",
+          "print-color-adjust":"exact"
+        });
+
+        inner.appendChild(img);
+        cloneBox.appendChild(inner);
+
+        if(cloneCell){
+          cloneCell.classList.add("has-photo");
+        }
+      }
+    }
+  }
+
+  clone.querySelectorAll(".photo-file-input,.photo-delete-btn,.photo-help,.photo-placed-mark").forEach(el => el.remove());
+  clone.querySelectorAll("[onclick]").forEach(el => el.removeAttribute("onclick"));
+
+  clone.classList.add("ipad-print-page");
+  clone.classList.remove("skip-print");
+  return clone;
+}
+
+function collectIpadPrintPages(){
+  prepareIpadPhotoPrintState();
+
+  const clones = [];
+  const pageIds = ["page1","page2","page3","page4","page5"];
+
+  pageIds.forEach(id => {
+    const page = document.getElementById(id);
+    if(!page) return;
+
+    if(id === "page4" && !hasAnyPage4PhotoForPrint()){
+      return;
+    }
+
+    clones.push(clonePageForIpadPrint(page));
+  });
+
+  getCertificatePrintPageHtml().forEach(pageHtml => {
+    const temp = document.createElement("div");
+    temp.innerHTML = pageHtml;
+    const page = temp.firstElementChild;
+    if(page) clones.push(page);
+  });
+
+  if(clones.length){
+    clones.forEach(clone => clone.classList.remove("last-print-page"));
+    clones[clones.length - 1].classList.add("last-print-page");
+  }
+
+  return clones.map(clone => clone.outerHTML);
+}
+
+
+function getIpadPrintCss(){
+  const styles = Array.from(document.querySelectorAll("style")).map(s => s.textContent || "").join("\n");
+
+  return `
+    ${styles}
+
+    @page{size:A4 portrait;margin:0;}
+
+    html, body{
+      width:210mm!important;
+      min-width:210mm!important;
+      max-width:210mm!important;
+      height:auto!important;
+      min-height:0!important;
+      margin:0!important;
+      padding:0!important;
+      background:#fff!important;
+      overflow:visible!important;
+      -webkit-print-color-adjust:exact!important;
+      print-color-adjust:exact!important;
+    }
+
+    body.ipad-render-document{
+      display:block!important;
+      transform:none!important;
+      -webkit-transform:none!important;
+      rotate:0deg!important;
+      writing-mode:horizontal-tb!important;
+      width:210mm!important;
+      min-width:210mm!important;
+      max-width:210mm!important;
+      height:auto!important;
+      min-height:0!important;
+      margin:0!important;
+      padding:0!important;
+      overflow:visible!important;
+      font-family:"Malgun Gothic","Apple SD Gothic Neo",Arial,sans-serif!important;
+    }
+
+    .toolbar,.guide,.field-send-panel,.photo-picker-note,.signature-modal,.photo-choice-modal,
+    .photo-file-input,.photo-delete-btn,.photo-help,.photo-placed-mark{
+      display:none!important;
+    }
+
+    /* 핵심: iPad는 고정 295mm 페이지가 실제 출력가능 높이를 넘으면서 다음 빈 페이지를 만들었습니다.
+       그래서 인쇄용 복제 페이지는 내용 높이만큼만 잡고, page-break만 강제합니다. */
+    .page.ipad-print-page{
+      display:block!important;
+      position:relative!important;
+      width:210mm!important;
+      min-width:210mm!important;
+      max-width:210mm!important;
+      height:auto!important;
+      min-height:0!important;
+      max-height:none!important;
+      margin:0!important;
+      padding:5mm 6mm 5mm!important;
+      background:#fff!important;
+      box-shadow:none!important;
+      overflow:visible!important;
+      transform:none!important;
+      -webkit-transform:none!important;
+      box-sizing:border-box!important;
+      page-break-before:auto!important;
+      break-before:auto!important;
+      page-break-after:always!important;
+      break-after:page!important;
+      page-break-inside:avoid!important;
+      break-inside:avoid!important;
+    }
+
+    .page.ipad-print-page.last-print-page,
+    .page.ipad-print-page:last-child{
+      page-break-after:auto!important;
+      break-after:auto!important;
+    }
+
+    table, tr, td, th{
+      page-break-inside:avoid!important;
+      break-inside:avoid!important;
+      border-color:#111!important;
+      visibility:visible!important;
+      opacity:1!important;
+    }
+
+    table.form th,
+    table.form td{
+      border-color:#111!important;
+    }
+
+    input, textarea, select{
+      color:#111!important;
+      background:transparent!important;
+      -webkit-text-fill-color:#111!important;
+    }
+
+    /* 사진 페이지: Safari 인쇄에서 한 페이지 안에 들어오도록 높이를 줄이고,
+       사진 박스는 left/right/top/bottom 3mm inset 방식으로 잡아 좌측/하단 붙음 현상을 막습니다. */
+    #page3.ipad-print-page,
+    #page4.ipad-print-page{
+      width:210mm!important;
+      min-width:210mm!important;
+      max-width:210mm!important;
+      height:auto!important;
+      min-height:0!important;
+      max-height:none!important;
+      padding:4mm 6mm 4mm!important;
+      overflow:visible!important;
+      box-sizing:border-box!important;
+      page-break-inside:avoid!important;
+      break-inside:avoid!important;
+    }
+
+    #page3.ipad-print-page .photo-page-title,
+    #page4.ipad-print-page .photo-page-title{
+      height:6mm!important;
+      min-height:6mm!important;
+      max-height:6mm!important;
+      line-height:6mm!important;
+      margin:0 0 1mm 0!important;
+      padding:0!important;
+      overflow:hidden!important;
+      font-size:10pt!important;
+    }
+
+    #page3.ipad-print-page .photo-page-table,
+    #page4.ipad-print-page .photo-page-table{
+      display:table!important;
+      width:198mm!important;
+      min-width:198mm!important;
+      max-width:198mm!important;
+      height:246mm!important;
+      min-height:246mm!important;
+      max-height:246mm!important;
+      margin:0 auto!important;
+      table-layout:fixed!important;
+      border-collapse:collapse!important;
+      border-spacing:0!important;
+      overflow:hidden!important;
+      page-break-inside:avoid!important;
+      break-inside:avoid!important;
+      border:1.25px solid #111!important;
+      background:#fff!important;
+    }
+
+    #page3.ipad-print-page .photo-page-table tr:nth-child(odd),
+    #page4.ipad-print-page .photo-page-table tr:nth-child(odd){
+      height:75mm!important;
+      min-height:75mm!important;
+      max-height:75mm!important;
+    }
+
+    #page3.ipad-print-page .photo-page-table tr:nth-child(even),
+    #page4.ipad-print-page .photo-page-table tr:nth-child(even){
+      height:7mm!important;
+      min-height:7mm!important;
+      max-height:7mm!important;
+    }
+
+    #page3.ipad-print-page .photo-cell,
+    #page4.ipad-print-page .photo-cell{
+      position:relative!important;
+      width:99mm!important;
+      min-width:99mm!important;
+      max-width:99mm!important;
+      height:75mm!important;
+      min-height:75mm!important;
+      max-height:75mm!important;
+      padding:0!important;
+      margin:0!important;
+      overflow:hidden!important;
+      vertical-align:top!important;
+      background:#fff!important;
+      box-sizing:border-box!important;
+      border:1.25px solid #111!important;
+    }
+
+    #page3.ipad-print-page .caption-cell,
+    #page4.ipad-print-page .caption-cell{
+      height:7mm!important;
+      min-height:7mm!important;
+      max-height:7mm!important;
+      padding:0!important;
+      margin:0!important;
+      overflow:hidden!important;
+      vertical-align:middle!important;
+      text-align:center!important;
+      border:1.25px solid #111!important;
+      background:#fff!important;
+    }
+
+    #page3.ipad-print-page .photo-box,
+    #page4.ipad-print-page .photo-box{
+      display:block!important;
+      position:absolute!important;
+      left:3mm!important;
+      right:3mm!important;
+      top:3mm!important;
+      bottom:3mm!important;
+      width:auto!important;
+      min-width:0!important;
+      max-width:none!important;
+      height:auto!important;
+      min-height:0!important;
+      max-height:none!important;
+      margin:0!important;
+      padding:0!important;
+      box-sizing:border-box!important;
+      overflow:hidden!important;
+      background:#fff!important;
+      color:#999!important;
+      font-size:8pt!important;
+      line-height:1.2!important;
+    }
+
+    #page3.ipad-print-page .photo-inner,
+    #page4.ipad-print-page .photo-inner,
+    #page3.ipad-print-page .ipad-photo-inner,
+    #page4.ipad-print-page .ipad-photo-inner{
+      display:block!important;
+      position:absolute!important;
+      left:0!important;
+      right:0!important;
+      top:0!important;
+      bottom:0!important;
+      width:auto!important;
+      height:auto!important;
+      min-width:0!important;
+      min-height:0!important;
+      max-width:none!important;
+      max-height:none!important;
+      margin:0!important;
+      padding:0!important;
+      overflow:hidden!important;
+      box-sizing:border-box!important;
+      background:#fff!important;
+    }
+
+    #page3.ipad-print-page img.ipad-print-photo,
+    #page4.ipad-print-page img.ipad-print-photo,
+    #page3.ipad-print-page .photo-box img.auto-fit-photo,
+    #page4.ipad-print-page .photo-box img.auto-fit-photo{
+      position:absolute!important;
+      left:0!important;
+      right:0!important;
+      top:0!important;
+      bottom:0!important;
+      width:100%!important;
+      height:100%!important;
+      min-width:100%!important;
+      min-height:100%!important;
+      max-width:none!important;
+      max-height:none!important;
+      object-fit:cover!important;
+      object-position:center center!important;
+      display:block!important;
+      visibility:visible!important;
+      opacity:1!important;
+      transform:none!important;
+      -webkit-transform:none!important;
+      margin:0!important;
+      padding:0!important;
+      -webkit-print-color-adjust:exact!important;
+      print-color-adjust:exact!important;
+    }
+  `;
+}
+
+
+function waitForIframeImages(doc, timeoutMs=4500){
+  const imgs = Array.from(doc.querySelectorAll("img"));
+  if(imgs.length === 0) return Promise.resolve();
+
+  return new Promise(resolve => {
+    let remaining = imgs.length;
+    let finished = false;
+
+    const finish = () => {
+      remaining -= 1;
+      if(remaining <= 0 && !finished){
+        finished = true;
+        resolve();
+      }
+    };
+
+    setTimeout(() => {
+      if(!finished){
+        finished = true;
+        resolve();
+      }
+    }, timeoutMs);
+
+    imgs.forEach(img => {
+      if(img.complete && img.naturalWidth){
+        finish();
+      }else{
+        img.addEventListener("load", finish, {once:true});
+        img.addEventListener("error", finish, {once:true});
+      }
+    });
+  });
+}
+
+async function printIpadPdf(){
   updatePdfDocumentTitle();
+  hidePrintFooterMetaButKeepPageNumbers(document);
+  syncCertificatePrintPagesVisibility();
   saveForm(false);
-  setTimeout(() => window.print(), 80);
+  syncPrintStatusSpans();
+
+  const pagesHtml = collectIpadPrintPages().join("\\n");
+  const title = buildPdfFileBaseName();
+
+  let iframe = document.getElementById("ipadPrintFrame");
+  if(iframe) iframe.remove();
+
+  iframe = document.createElement("iframe");
+  iframe.id = "ipadPrintFrame";
+  iframe.style.position = "fixed";
+  iframe.style.left = "-10000px";
+  iframe.style.top = "0";
+  iframe.style.width = "210mm";
+  iframe.style.height = "297mm";
+  iframe.style.border = "0";
+  iframe.style.opacity = "0.01";
+  iframe.style.pointerEvents = "none";
+  iframe.setAttribute("aria-hidden", "true");
+  document.body.appendChild(iframe);
+
+  const doc = iframe.contentDocument || iframe.contentWindow.document;
+  doc.open();
+  doc.write(`<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>${title}</title>
+<style>${getIpadPrintCss()}</style>
+</head>
+<body class="ipad-render-document">
+${pagesHtml}
+</body>
+</html>`);
+  doc.close();
+  hidePrintFooterMetaButKeepPageNumbers(doc);
+
+  await new Promise(resolve => setTimeout(resolve, 500));
+  await waitForIframeImages(doc, 5000);
+
+  const cleanup = () => {
+    setTimeout(() => {
+      const f = document.getElementById("ipadPrintFrame");
+      if(f) f.remove();
+      window.removeEventListener("afterprint", cleanup);
+    }, 1400);
+  };
+  window.addEventListener("afterprint", cleanup);
+
+  iframe.contentWindow.focus();
+  setTimeout(() => {
+    iframe.contentWindow.print();
+  }, 600);
+}
+
+
+
+function hidePrintFooterMetaButKeepPageNumbers(root=document){
+  const candidates = Array.from(root.querySelectorAll("body *")).filter(el => {
+    const text = (el.textContent || "").trim();
+    if(!text || text.length > 120) return false;
+    return /github\.io|github\.com|https?:\/\//i.test(text) ||
+           /20\d{2}[.\-년\/\s]+[01]?\d[.\-월\/\s]+[0-3]?\d/.test(text);
+  });
+
+  candidates.forEach(el => {
+    const text = (el.textContent || "").trim();
+
+    // 페이지번호가 같이 있는 경우는 숫자 페이지 표시는 남기고 URL/날짜만 개별 span 처리
+    if(/github\.io|github\.com|https?:\/\//i.test(text)){
+      el.dataset.printMeta = "url";
+    }else if(/20\d{2}[.\-년\/\s]+[01]?\d[.\-월\/\s]+[0-3]?\d/.test(text)){
+      // 1/10, 2/10 같은 페이지번호만 있는 요소는 제외
+      if(!/^\d+\s*\/\s*\d+$/.test(text)){
+        el.dataset.printMeta = "date";
+      }
+    }
+  });
+}
+
+async 
+
+
+function syncCertificatePrintPagesVisibility(){
+  const wrap = document.getElementById("certificatePrintPages");
+  if(!wrap) return;
+
+  const includeCerts = document.getElementById("includeCertFiles");
+  if(includeCerts && !includeCerts.checked){
+    wrap.classList.add("skip-print");
+  }else{
+    wrap.classList.remove("skip-print");
+  }
+
+  // 현장 발송 패널의 신청주소를 최우선으로 그대로 반영하고,
+  // 없을 경우 1페이지 주소란 값을 사용합니다.
+  const applicationAddress = (getTextValue("applicationAddressSend") || getTextValue("address") || "").trim();
+  const submitAddress = applicationAddress || "신청주소지입력";
+  wrap.querySelectorAll("[data-submit-address]").forEach(el => {
+    el.textContent = submitAddress;
+  });
+
+  const dateText = koDateFromInput("inspectDate") || new Date().toISOString().slice(0,10);
+  wrap.querySelectorAll('[data-cert-date="today"]').forEach(el => {
+    el.textContent = dateText;
+  });
+}
+
+
+
+async function printWithPdfTitle(){
+  // v144: 브라우저/프린터가 현재 화면을 가로로 회전시키는 문제를 피하기 위해
+  // 일반 PDF 저장/인쇄도 별도 A4 세로 인쇄문서(iframe)로 출력합니다.
+  await printIpadPdf();
 }
 
 function schedulePdfTitleUpdate(){
@@ -5508,6 +7735,16 @@ function dataUrlToFile(dataUrl, name, mime){
   const bytes = new Uint8Array(len);
   for(let i=0;i<len;i++) bytes[i] = bstr.charCodeAt(i);
   return new File([bytes], name, {type:mime || "image/jpeg"});
+}
+
+
+function loadImageFromSrc(src){
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => resolve(img);
+    img.onerror = reject;
+    img.src = src;
+  });
 }
 
 function loadImageFromDataUrl(dataUrl){
@@ -5536,11 +7773,89 @@ function splitTextForCanvas(ctx, text, maxWidth){
   return lines;
 }
 
-async function createStampedCertFile(item){
-  if(!item.stamp){
-    return dataUrlBase64ToFile(item);
+
+async function drawOriginalComparisonStamp(ctx, canvas, redBoxY){
+  const blue = "#005bac";
+  const red = "#b01818";
+
+  const w = canvas.width;
+  const h = canvas.height;
+
+  const stampW = Math.round(Math.min(w * 0.52, Math.max(w * 0.40, 620)));
+  const stampH = Math.round(stampW * 0.30);
+  const rightMargin = Math.round(w * 0.07);
+  const gap = Math.round(h * 0.025);
+
+  let x = w - stampW - rightMargin;
+  let y = Math.round(h - stampH - h * 0.075);
+
+  // 기존 하단 제출문구 박스가 있는 경우에는 겹치지 않도록 그 위쪽에 배치
+  if(redBoxY && redBoxY < h){
+    y = Math.round(redBoxY - stampH - gap);
   }
 
+  // 너무 위로 올라가지 않도록 보정
+  y = Math.max(Math.round(h * 0.58), y);
+  x = Math.max(Math.round(w * 0.06), x);
+
+  const lineW = Math.max(3, Math.round(w * 0.0028));
+  const sealSize = Math.round(stampH * 0.68);
+  const sealX = x + stampW - sealSize - Math.round(stampW * 0.055);
+  const sealY = y + Math.round((stampH - sealSize) / 2);
+  const dividerX = sealX - Math.round(stampW * 0.035);
+
+  ctx.save();
+  ctx.strokeStyle = blue;
+  ctx.fillStyle = blue;
+  ctx.lineWidth = lineW;
+  ctx.strokeRect(x, y, stampW, stampH);
+
+  // 내부 구획선
+  ctx.beginPath();
+  ctx.moveTo(x, y + Math.round(stampH * 0.30));
+  ctx.lineTo(x + stampW, y + Math.round(stampH * 0.30));
+  ctx.moveTo(dividerX, y);
+  ctx.lineTo(dividerX, y + stampH);
+  ctx.stroke();
+
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+
+  const titleSize = Math.max(22, Math.round(stampH * 0.22));
+  ctx.font = `900 ${titleSize}px "Malgun Gothic","Apple SD Gothic Neo",Arial,sans-serif`;
+  ctx.fillText("원 본 대 조 필", x + stampW / 2, y + Math.round(stampH * 0.15));
+
+  const bodySize = Math.max(15, Math.round(stampH * 0.105));
+  ctx.font = `800 ${bodySize}px "Malgun Gothic","Apple SD Gothic Neo",Arial,sans-serif`;
+  const bodyX = x + (dividerX - x) / 2;
+  ctx.fillText("위 사본은 원본과 대조하여", bodyX, y + Math.round(stampH * 0.47));
+  ctx.fillText("틀림없음을 확인합니다.", bodyX, y + Math.round(stampH * 0.64));
+
+  const dateText = koDateFromInput("inspectDate") || new Date().toISOString().slice(0,10);
+  const smallSize = Math.max(13, Math.round(stampH * 0.085));
+  ctx.font = `700 ${smallSize}px "Malgun Gothic","Apple SD Gothic Neo",Arial,sans-serif`;
+  ctx.fillText(dateText, bodyX, y + Math.round(stampH * 0.81));
+
+  // 안전점검표에 적용된 도장을 원본대조필 직인 위치에 사용
+  try{
+    const sealImg = await loadImageFromSrc(FIXED_INSPECTOR_SEAL_SRC);
+    ctx.drawImage(sealImg, sealX, sealY, sealSize, sealSize);
+  }catch(err){
+    ctx.strokeStyle = red;
+    ctx.fillStyle = red;
+    ctx.lineWidth = Math.max(2, Math.round(lineW * 0.8));
+    ctx.beginPath();
+    ctx.arc(sealX + sealSize / 2, sealY + sealSize / 2, sealSize / 2.15, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.font = `900 ${Math.round(sealSize * 0.18)}px "Malgun Gothic","Apple SD Gothic Neo",Arial,sans-serif`;
+    ctx.fillText("먹줄", sealX + sealSize / 2, sealY + sealSize / 2);
+  }
+
+  ctx.restore();
+}
+
+
+async function createStampedCertFile(item){
   const applicationAddress = getTextValue("applicationAddressSend") || getTextValue("address") || "신청주소지입력";
   const stampText = `이 문서는 외국인관광 도시민박업 신청용으로 ${applicationAddress}에 한정하여 제출함`;
 
@@ -5554,37 +7869,48 @@ async function createStampedCertFile(item){
 
   ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
-  const padX = Math.round(canvas.width * 0.055);
-  const boxW = canvas.width - padX * 2;
-  const boxH = Math.max(Math.round(canvas.height * 0.055), 90);
-  const boxY = canvas.height - boxH - Math.round(canvas.height * 0.035);
+  let redBoxY = canvas.height;
 
-  const lineW = Math.max(5, Math.round(canvas.width * 0.004));
-  ctx.save();
-  ctx.strokeStyle = "#d40000";
-  ctx.lineWidth = lineW;
-  ctx.strokeRect(padX, boxY, boxW, boxH);
+  // 기존 신청주소 한정 제출 문구는 기존 방식 유지
+  if(item.stamp){
+    const padX = Math.round(canvas.width * 0.055);
+    const boxW = canvas.width - padX * 2;
+    const boxH = Math.max(Math.round(canvas.height * 0.055), 90);
+    const boxY = canvas.height - boxH - Math.round(canvas.height * 0.035);
+    redBoxY = boxY;
 
-  let fontSize = Math.max(22, Math.round(canvas.width * 0.025));
-  ctx.fillStyle = "#d40000";
-  ctx.textAlign = "center";
-  ctx.textBaseline = "middle";
-  ctx.font = `900 ${fontSize}px "Malgun Gothic","Apple SD Gothic Neo",Arial,sans-serif`;
+    const lineW = Math.max(5, Math.round(canvas.width * 0.004));
+    ctx.save();
+    ctx.strokeStyle = "#d40000";
+    ctx.lineWidth = lineW;
+    ctx.strokeRect(padX, boxY, boxW, boxH);
 
-  let lines = splitTextForCanvas(ctx, stampText, boxW - Math.round(canvas.width * 0.045));
-  while(lines.length > 2 && fontSize > 18){
-    fontSize -= 2;
+    let fontSize = Math.max(22, Math.round(canvas.width * 0.025));
+    ctx.fillStyle = "#d40000";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
     ctx.font = `900 ${fontSize}px "Malgun Gothic","Apple SD Gothic Neo",Arial,sans-serif`;
-    lines = splitTextForCanvas(ctx, stampText, boxW - Math.round(canvas.width * 0.045));
+
+    let lines = splitTextForCanvas(ctx, stampText, boxW - Math.round(canvas.width * 0.045));
+    while(lines.length > 2 && fontSize > 18){
+      fontSize -= 2;
+      ctx.font = `900 ${fontSize}px "Malgun Gothic","Apple SD Gothic Neo",Arial,sans-serif`;
+      lines = splitTextForCanvas(ctx, stampText, boxW - Math.round(canvas.width * 0.045));
+    }
+
+    const lineHeight = fontSize * 1.28;
+    const centerY = boxY + boxH / 2;
+    const startY = centerY - ((lines.length - 1) * lineHeight / 2);
+    lines.forEach((line, idx) => {
+      ctx.fillText(line, padX + boxW / 2, startY + idx * lineHeight);
+    });
+    ctx.restore();
   }
 
-  const lineHeight = fontSize * 1.28;
-  const centerY = boxY + boxH / 2;
-  const startY = centerY - ((lines.length - 1) * lineHeight / 2);
-  lines.forEach((line, idx) => {
-    ctx.fillText(line, padX + boxW / 2, startY + idx * lineHeight);
-  });
-  ctx.restore();
+  // v144: 파란색 원본대조필 직인 추가.
+  // 원본대조필 자체에 들어있는 별도 도장은 사용하지 않고,
+  // 안전점검표에 적용된 도장(FIXED_INSPECTOR_SEAL_SRC)을 넣습니다.
+  await drawOriginalComparisonStamp(ctx, canvas, redBoxY);
 
   const outDataUrl = canvas.toDataURL("image/jpeg", 0.92);
   return dataUrlToFile(outDataUrl, item.name, "image/jpeg");
@@ -5707,8 +8033,83 @@ function requireFinalPdfSelected(){
 }
 
 
+function isMobileShareEnvironment(){
+  const ua = navigator.userAgent || "";
+  const isIPadOS = /Macintosh/i.test(ua) && navigator.maxTouchPoints && navigator.maxTouchPoints > 1;
+  return /Android|iPhone|iPad|iPod/i.test(ua) || isIPadOS;
+}
+
+async function tryCopyTextToClipboard(text){
+  try{
+    await copyTextToClipboard(text);
+    return true;
+  }catch(err){
+    try{
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      ta.setAttribute("readonly", "readonly");
+      ta.style.position = "fixed";
+      ta.style.left = "0";
+      ta.style.top = "0";
+      ta.style.width = "1px";
+      ta.style.height = "1px";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      const ok = document.execCommand("copy");
+      ta.remove();
+      return !!ok;
+    }catch(e){
+      return false;
+    }
+  }
+}
+
+function buildKakaoDesktopClipboardText(title, body, files){
+  return `${title}
+
+${body}`;
+}
+
+async function tryWriteFilesToClipboardDesktop(files, text){
+  // 브라우저가 허용하는 경우에만 파일 클립보드 복사를 시도합니다.
+  // PDF/일반 파일은 브라우저·OS·카카오톡 조합에 따라 대부분 제한될 수 있습니다.
+  if(!navigator.clipboard || !navigator.clipboard.write || !window.ClipboardItem){
+    return {ok:false, reason:"clipboard-file-api-missing"};
+  }
+
+  try{
+    const items = [];
+
+    // 텍스트는 항상 같이 시도
+    items.push(new ClipboardItem({
+      "text/plain": new Blob([text], {type:"text/plain"})
+    }));
+
+    for(const file of files){
+      const mime = file.type || "application/octet-stream";
+      if(window.ClipboardItem.supports && !ClipboardItem.supports(mime)){
+        continue;
+      }
+      items.push(new ClipboardItem({[mime]: file}));
+    }
+
+    if(items.length <= 1){
+      return {ok:false, reason:"file-mime-not-supported"};
+    }
+
+    await navigator.clipboard.write(items);
+    return {ok:true, reason:"file-clipboard-attempted"};
+  }catch(err){
+    return {ok:false, reason:err && err.name ? err.name : "clipboard-write-failed"};
+  }
+}
+
 async function prepareKakaoSend(){
+  // 기존 카카오톡 보내기는 안드로이드/아이패드 공유창 방식으로 유지
   if(!requireFinalPdfSelected()) return;
+
   const {title, body} = buildClientSendMessage("kakao");
   const files = await collectShareFiles("kakao");
 
@@ -5717,8 +8118,13 @@ async function prepareKakaoSend(){
     return;
   }
 
-  const textForCopy = `${title}\n\n${body}\n\n[첨부파일]\n${attachmentListText(files)}`;
-  await copyTextToClipboard(textForCopy);
+  if(!isMobileShareEnvironment()){
+    alert("데스크톱에서는 새로 추가한 '카톡(데스크탑)' 버튼을 사용해 주세요.\n\n기존 '카카오톡 보내기'는 안드로이드/아이패드 공유창 방식으로 남겨두었습니다.");
+    return;
+  }
+
+  const textForCopy = `${title}\n\n${body}`;
+  await tryCopyTextToClipboard(textForCopy);
 
   if(navigator.canShare && navigator.canShare({files})){
     try{
@@ -5732,14 +8138,42 @@ async function prepareKakaoSend(){
   if(navigator.share){
     try{
       await navigator.share({title, text:body});
-      alert("이 브라우저는 파일 첨부 공유를 제한했습니다. 카카오톡에서 PDF와 자격증명 서류를 직접 첨부해 주세요. 발송문은 복사되어 있습니다.");
+      alert("이 브라우저는 파일 첨부 공유를 제한했습니다.\n\n발송문은 복사되어 있습니다. 카카오톡에서 붙여넣고 PDF와 자격증명 서류를 직접 첨부해 주세요.");
       return;
     }catch(err){
       if(err && err.name === "AbortError") return;
     }
   }
 
-  alert("카카오톡 공유창을 직접 열 수 없어 발송문을 복사했습니다. 카카오톡에서 붙여넣고 PDF와 자격증명 서류를 직접 첨부해 주세요.");
+  alert("카카오톡 공유창을 직접 열 수 없어 발송문을 복사했습니다.\n\n카카오톡에서 붙여넣고 PDF와 자격증명 서류를 직접 첨부해 주세요.");
+}
+
+async function prepareKakaoDesktopSend(){
+  if(!requireFinalPdfSelected()) return;
+
+  const {title, body} = buildClientSendMessage("kakao");
+  const files = await collectShareFiles("kakao");
+
+  if(files.length === 0){
+    alert("먼저 '완성된 안전점검표 PDF 선택(필수)'에서 PDF 파일을 선택해 주세요.");
+    return;
+  }
+
+  const clipboardText = buildKakaoDesktopClipboardText(title, body, files);
+  const fileClipboardResult = await tryWriteFilesToClipboardDesktop(files, clipboardText);
+
+  if(fileClipboardResult.ok){
+    alert("카톡(데스크탑) 전송 준비가 완료되었습니다.\n\n발송문과 첨부파일을 클립보드에 넣는 시도를 완료했습니다.\n\n이제 데스크톱 카카오톡 채팅방으로 들어가서 Ctrl+V를 눌러 붙여넣어 보세요.\n\n※ 브라우저/카카오톡이 PDF 파일 붙여넣기를 차단하면 발송문만 붙을 수 있습니다.");
+    return;
+  }
+
+  const copied = await tryCopyTextToClipboard(clipboardText);
+
+  alert(
+    (copied ? "발송문은 클립보드에 복사했습니다." : "브라우저가 자동 복사를 제한했습니다. 발송문 복사가 실패했습니다.") +
+    "\n\n다만 이 컴퓨터의 브라우저는 PDF/자격증명 파일을 카카오톡 채팅방에 Ctrl+V로 붙일 수 있는 형태로 클립보드에 넣는 것을 허용하지 않습니다." +
+    "\n\n가능한 전송방법:\n1) 카카오톡 채팅방 열기\n2) Ctrl+V로 발송문 붙여넣기\n3) PDF와 자격증명 3종은 채팅방에 직접 드래그하거나 클립 버튼으로 첨부\n\n※ 웹앱은 카카오톡 채팅방 진입 전까지 다른 복사/붙여넣기를 잠그거나, 채팅방 선택과 동시에 파일을 자동 전송하도록 제어할 수 없습니다."
+  );
 }
 
 async function prepareEmailSend(){
@@ -5758,7 +8192,7 @@ async function prepareEmailSend(){
     return;
   }
 
-  const clipboardText = `받는사람: ${email}\n제목: ${title}\n\n${body}\n\n[첨부파일]\n${attachmentListText(files)}`;
+  const clipboardText = `받는사람: ${email}\n제목: ${title}\n\n${body}`;
   await copyTextToClipboard(clipboardText);
 
   alert("받는사람·제목·본문·첨부파일 목록을 복사했습니다.\n\n메일쓰기 화면에서 내용 확인 후, 안전점검표 PDF와 자격증명 서류를 첨부하고 최종 보내기 버튼은 직접 눌러주세요.\n\n※ 브라우저 보안상 네이버메일/G메일 웹 작성창에 파일을 자동 첨부하는 것은 제한됩니다.");
@@ -5808,7 +8242,7 @@ async function copySendMessage(){
   alert("의뢰인 발송문을 복사했습니다.");
 }
 
-async function downloadBuiltInCerts(){
+async function downloadBuiltInCerts_DISABLED(){
   const files = await getBuiltInCertFiles();
   files.forEach(file => {
     const url = URL.createObjectURL(file);
